@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native-stack": "^6.11.0",
     "@supabase/supabase-js": "^2.45.4",
     "expo": "~51.0.21",
     "expo-status-bar": "~1.12.1",
