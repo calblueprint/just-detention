@@ -1,6 +1,6 @@
 import { Button, Text, View } from 'react-native';
 
-export default function Home({ navigation }) {
+export default function Home({ navigation }: { navigation: any }) {
   return (
     <View>
       <Text>hello</Text>
