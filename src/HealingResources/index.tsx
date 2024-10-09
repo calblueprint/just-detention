@@ -1,5 +1,17 @@
-import { Text } from 'react-native';
+import { Button, View } from 'react-native';
+import styles from './styles';
 
 export default function HealingResources() {
-  return <Text>hello</Text>;
+  return (
+    <View>
+      <Button
+        title="Hope Healing Guide"
+        onPress={() => console.log('does this work')}
+      />
+      <Button
+        title="Theme Healing Resources"
+        onPress={() => console.log('does this work')}
+      />
+    </View>
+  );
 }
