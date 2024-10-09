@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HealingResources from '@/HealingResources';
-import Home from '@/Home';
-import LegalRights from '@/LegalRights';
-import SeekHelp from '@/SeekHelp';
+import HealingResources from '@/screens/HealingResources';
+import Home from '@/screens/Home';
+import LegalRights from '@/screens/LegalRights';
+import SeekHelp from '@/screens/SeekHelp';
 
 const Stack = createNativeStackNavigator();
 
