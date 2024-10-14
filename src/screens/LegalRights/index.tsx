@@ -1,4 +1,4 @@
-import { Button, Image, ScrollView, Text, View } from 'react-native';
+import { Button, Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { styles } from './styles';
 
@@ -59,19 +59,27 @@ export default function LegalRights({ navigation }: { navigation: any }) {
   return (
     <>
       <Text style={styles.title}>Legal Rights</Text>
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.captionButtons}>
+          <Text style={styles.buttonText}>English CC</Text>
+        </Pressable>
+        <Pressable style={styles.captionButtons}>
+          <Text style={styles.buttonText}>Spanish CC</Text>
+        </Pressable>
+      </View>
       <ScrollView>
         <View style={styles.preaModulesView}>
           {placeholderModules.map(section => (
-            <View
+            <Pressable
               style={styles.preaModule}
-              onTouchStart={section['onClickFunction']}
+              onPress={section['onClickFunction']}
             >
               <Image
                 style={styles.modulePoster}
                 source={section['poster_url']}
               />
               <Text style={styles.moduleTitle}>{section['title']}</Text>
-            </View>
+            </Pressable>
           ))}
         </View>
       </ScrollView>

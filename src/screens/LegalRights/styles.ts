@@ -7,6 +7,25 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 20,
   },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+  },
+  captionButtons: {
+    borderRadius: 30,
+    width: 400,
+    height: 50,
+    // backgroundColor: "grey",
+    borderWidth: 1,
+    borderColor: 'grey',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+  },
   preaModulesView: {
     display: 'flex',
     flexDirection: 'row',
