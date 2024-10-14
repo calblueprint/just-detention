@@ -6,14 +6,14 @@ import { styles } from './styles';
 export default function VideoPage() {
   return (
     <>
-      <Text>this is video</Text>
-      <Video
-        source={require('@assets/videos/da_link.mp4')}
+      <Text>this is video yup</Text>
+      {/* <Video
+        source={require(PreaVideo)}
         style={styles.video}
         controls={true} // Show playback controls
         resizeMode="contain" // Adjusts how the video scales within the player
         paused={false} // Autoplay video
-      />
+      /> */}
     </>
   );
 }
