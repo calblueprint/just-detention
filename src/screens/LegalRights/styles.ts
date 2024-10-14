@@ -12,16 +12,19 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 20,
+    paddingBottom: 15,
   },
   captionButtons: {
     borderRadius: 30,
     width: 400,
     height: 50,
-    // backgroundColor: "grey",
     borderWidth: 1,
     borderColor: 'grey',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  captionButtonsPressed: {
+    backgroundColor: 'grey',
   },
   buttonText: {
     fontWeight: 'bold',

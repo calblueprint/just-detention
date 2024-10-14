@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { styles } from './styles';
@@ -56,14 +57,36 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ];
 
+  const [engPressed, setEngPressed] = useState(true);
+
   return (
     <>
       <Text style={styles.title}>Legal Rights</Text>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.captionButtons}>
+        <Pressable
+          style={[
+            styles.captionButtons,
+            !engPressed && styles.captionButtonsPressed,
+          ]}
+          onPress={() => {
+            if (engPressed) {
+              setEngPressed(!engPressed);
+            }
+          }}
+        >
           <Text style={styles.buttonText}>English CC</Text>
         </Pressable>
-        <Pressable style={styles.captionButtons}>
+        <Pressable
+          style={[
+            styles.captionButtons,
+            engPressed && styles.captionButtonsPressed,
+          ]}
+          onPress={() => {
+            if (!engPressed) {
+              setEngPressed(!engPressed);
+            }
+          }}
+        >
           <Text style={styles.buttonText}>Spanish CC</Text>
         </Pressable>
       </View>
