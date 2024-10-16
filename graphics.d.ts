@@ -22,7 +22,7 @@ declare module '*.jpeg' {
   export default value;
 }
 
-// declare module '*.mp4' {
-//   const src: string;
-//   export default src;
-// }
+declare module '*.mp4' {
+  const source: { uri: string };
+  export default source;
+}

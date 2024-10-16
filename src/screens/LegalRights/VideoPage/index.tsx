@@ -1,19 +1,28 @@
-import { Button, Image, Text, View } from 'react-native';
-// import PreaVideo from '@/assets/videos/da_link.mp4';
-import Video from 'react-native-video';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Video } from 'expo-av';
 import { styles } from './styles';
 
 export default function VideoPage() {
   return (
-    <>
-      <Text>this is video yup</Text>
-      {/* <Video
-        source={require(PreaVideo)}
+    <ScrollView style={styles.container}>
+      <Video
+        source={require('@/assets/videos/da_link.mp4')}
+        rate={1.0}
+        volume={10.0}
+        isMuted={false}
+        shouldPlay
+        isLooping
         style={styles.video}
-        controls={true} // Show playback controls
-        resizeMode="contain" // Adjusts how the video scales within the player
-        paused={false} // Autoplay video
-      /> */}
-    </>
+      />
+
+      <View style={styles.buttonContainer}>
+        <Pressable style={[styles.captionButtons]}>
+          <Text style={styles.buttonText}>{'<   Previous Section'}</Text>
+        </Pressable>
+        <Pressable style={[styles.captionButtons]}>
+          <Text style={styles.buttonText}>{'Next Section   >'}</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 }

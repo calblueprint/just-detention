@@ -19,12 +19,12 @@ export const styles = StyleSheet.create({
     width: 400,
     height: 50,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: '#D9D9D9',
     justifyContent: 'center',
     alignItems: 'center',
   },
   captionButtonsPressed: {
-    backgroundColor: 'grey',
+    backgroundColor: '#D9D9D9',
   },
   buttonText: {
     fontWeight: 'bold',

@@ -9,7 +9,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     // console.log('working');
   }
 
-  const placeholderModules = [
+  const placeholderModulesEnglish = [
     {
       title: 'Section Title 1',
       poster_url: placeholderPoster,
@@ -57,7 +57,59 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ];
 
-  const [engPressed, setEngPressed] = useState(true);
+  const placeholderModulesSpanish = [
+    {
+      title: 'Título de la Sección 1',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 2',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 3',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 4',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 5',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 6',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 7',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 8',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+    {
+      title: 'Título de la Sección 9',
+      poster_url: placeholderPoster,
+      onClickFunction: rick_rolls,
+    },
+  ];
+
+  const [spanishPressed, setSpanishPressed] = useState(false);
+
+  const currentModules = spanishPressed
+    ? placeholderModulesEnglish
+    : placeholderModulesSpanish;
 
   return (
     <>
@@ -66,11 +118,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
         <Pressable
           style={[
             styles.captionButtons,
-            !engPressed && styles.captionButtonsPressed,
+            spanishPressed && styles.captionButtonsPressed,
           ]}
           onPress={() => {
-            if (engPressed) {
-              setEngPressed(!engPressed);
+            if (!spanishPressed) {
+              setSpanishPressed(!spanishPressed);
             }
           }}
         >
@@ -79,11 +131,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
         <Pressable
           style={[
             styles.captionButtons,
-            engPressed && styles.captionButtonsPressed,
+            !spanishPressed && styles.captionButtonsPressed,
           ]}
           onPress={() => {
-            if (!engPressed) {
-              setEngPressed(!engPressed);
+            if (spanishPressed) {
+              setSpanishPressed(!spanishPressed);
             }
           }}
         >
@@ -92,7 +144,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       </View>
       <ScrollView>
         <View style={styles.preaModulesView}>
-          {placeholderModules.map(section => (
+          {currentModules.map(section => (
             <Pressable
               style={styles.preaModule}
               onPress={section['onClickFunction']}
