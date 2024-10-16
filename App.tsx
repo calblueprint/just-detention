@@ -2,9 +2,9 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HealingResources from '@/HealingResources';
-import Home from '@/Home';
-import LegalRights from '@/LegalRights';
-import SeekHelp from '@/SeekHelp';
+import Home from '@/screens/Home';
+import LegalRights from '@/screens/LegalRights';
+import SeekHelp from '@/screens/SeekHelp';
 
 const Tab = createBottomTabNavigator();
 
