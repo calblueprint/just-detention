@@ -3,22 +3,22 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'row', 
+    flexDirection: 'row',
     marginTop: 10,
     padding: 30,
   },
   leftPanel: {
     display: 'flex',
-    flexDirection: 'column', 
-    justifyContent: 'flex-start', 
-    width: '25%', 
-    paddingRight: 20, 
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: '25%',
+    paddingRight: 20,
   },
   rightPanel: {
     display: 'flex',
-    flexDirection: 'column', 
-    width: '75%', 
-    backgroundColor: '#f8f8f8', 
+    flexDirection: 'column',
+    width: '75%',
+    backgroundColor: '#f8f8f8',
     padding: 10,
   },
   filterButton: {
@@ -26,9 +26,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    marginVertical: 10, 
+    marginVertical: 10,
     paddingVertical: 15,
-    width: '100%', 
+    width: '100%',
   },
   buttonText: {
     fontSize: 16,

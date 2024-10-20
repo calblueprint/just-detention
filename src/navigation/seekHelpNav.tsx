@@ -7,9 +7,9 @@ import ResourceList from '@/screens/SeekHelp/ResourceList';
 const Stack = createNativeStackNavigator();
 export default function seekHelpNav() {
   return (
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Resource List" component={ResourceList} />
-        <Stack.Screen name="Seek Help" component={SeekHelp} />
-      </Stack.Navigator>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Resource List" component={ResourceList} />
+      <Stack.Screen name="Seek Help" component={SeekHelp} />
+    </Stack.Navigator>
   );
 }
