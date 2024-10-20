@@ -8,7 +8,7 @@ export default function VideoPage() {
       <Video
         source={require('@/assets/videos/da_link.mp4')}
         rate={1.0}
-        volume={10.0}
+        volume={1.0}
         isMuted={false}
         shouldPlay
         isLooping

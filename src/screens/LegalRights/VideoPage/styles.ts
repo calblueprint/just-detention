@@ -24,8 +24,6 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#D9D9D9',
     borderColor: '#D9D9D9',
-    shadowColor: 'black',
-    shadowOpacity: 0.05,
     justifyContent: 'center',
     alignItems: 'center',
   },

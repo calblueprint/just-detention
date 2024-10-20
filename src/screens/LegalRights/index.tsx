@@ -1,59 +1,58 @@
 import { useState } from 'react';
-import { Button, Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { styles } from './styles';
 
 export default function LegalRights({ navigation }: { navigation: any }) {
-  function rick_rolls() {
+  const rickRolls = () => {
     navigation.navigate('Video Page');
-    // console.log('working');
-  }
+  };
 
   const placeholderModulesEnglish = [
     {
       title: 'Section Title 1',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 2',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 3',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 4',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 5',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 6',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 7',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 8',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Section Title 9',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
   ];
 
@@ -61,47 +60,47 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     {
       title: 'Título de la Sección 1',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 2',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 3',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 4',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 5',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 6',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 7',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 8',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
     {
       title: 'Título de la Sección 9',
       poster_url: placeholderPoster,
-      onClickFunction: rick_rolls,
+      onClickFunction: rickRolls,
     },
   ];
 
