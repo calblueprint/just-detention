@@ -1,9 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Text, View } from 'react-native';
-import { getSeekHelpData } from '@/supabase/queries/generalQueries';
-import { Resource } from '@/types/types';
+// import React, { useEffect, useState } from 'react';
+// import { Button, Text, View } from 'react-native';
+// import styles from './styles';
 
-export default function SeekHelp() {
+// export default function SeekHelp({ navigation }: { navigation: any }) {
+//   return(
+//     <View style={styles.buttonContainer}>
+//       <Button title='State Resources' onPress={() => navigation.navigate('Resource List')} />
+//       <Button title='National Resources' onPress={() => navigation.navigate('Resource List')} />
+//     </View>
+//   )
+// }
+
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import {styles} from './styles'; // Make sure this is the correct path
+
+export default function SeekHelp({ navigation }: { navigation: any }) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Resource List')}>
+        <Text style={styles.buttonText}>California</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Resource List')}>
+        <Text style={styles.buttonText}>National</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+  /*
   const [summaries, setSummaries] = useState<Resource[]>([]);
 
   useEffect(() => {
@@ -32,3 +57,4 @@ export default function SeekHelp() {
     </View>
   );
 }
+  */

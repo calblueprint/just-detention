@@ -5,6 +5,7 @@ import HealingResources from '@/screens/HealingResources';
 import Home from '@/screens/Home';
 import LegalRights from '@/screens/LegalRights';
 import SeekHelp from '@/screens/SeekHelp';
+import resourceList from '@/screens/SeekHelp/ResourceList';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen name="Healing Resources" component={HealingResources} />
         <Stack.Screen name="Legal Rights" component={LegalRights} />
         <Stack.Screen name="Seek Help" component={SeekHelp} />
+        <Stack.Screen name="Resource List" component={resourceList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
