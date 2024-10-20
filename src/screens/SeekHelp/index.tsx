@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
-import supabase from '../supabase/createClient';
-
-interface Resource {
-  summary: string;
-  [key: string]: any;
-}
+import { getSeekHelpData } from '@/supabase/queries/generalQueries';
+import { Resource } from '@/types/types';
 
 export default function SeekHelp() {
   const [summaries, setSummaries] = useState<Resource[]>([]);
@@ -16,17 +12,8 @@ export default function SeekHelp() {
 
   const fetchData = async () => {
     try {
-      const { data, error } = await supabase
-        .from('state_resources')
-        .select('*')
-        .in('state', ['California', 'National']);
-
-      if (error) {
-        console.error('Error fetching resources:', error);
-        return;
-      }
-
-      setSummaries(data as Resource[]);
+      const data = await getSeekHelpData();
+      setSummaries(data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }

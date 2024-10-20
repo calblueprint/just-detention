@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, View } from 'react-native';
-import supabase from '../supabase/createClient';
-
-interface Resource {
-  summary: string;
-  [key: string]: any;
-}
+import { getHealingResourceData } from '@/supabase/queries/generalQueries';
+import { Resource } from '@/types/types';
 
 export default function HealingResources() {
   const [, setSummaries] = useState<Resource[]>([]);
@@ -16,16 +12,8 @@ export default function HealingResources() {
 
   const fetchData = async () => {
     try {
-      const { data, error } = await supabase
-        .from('healing_resources')
-        .select('*');
-
-      if (error) {
-        console.error('Error fetching resources:', error);
-        return;
-      }
-
-      setSummaries(data as Resource[]);
+      const data = await getHealingResourceData();
+      setSummaries(data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
