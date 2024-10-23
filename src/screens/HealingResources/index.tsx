@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Button, View } from 'react-native';
-import { getHealingResourceData } from '@/supabase/queries/generalQueries';
-import { Resource } from '@/types/types';
+import { Text, TouchableOpacity, View } from 'react-native';
+import styles from './styles';
 
-export default function HealingResources() {
-  const [, setSummaries] = useState<Resource[]>([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const data = await getHealingResourceData();
-      setSummaries(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
+export default function HealingResources({ navigation }: { navigation: any }) {
   return (
-    <View>
-      <Button
-        title="Hope Healing Guide"
-        onPress={() => console.log('does this work')}
-      />
-      <Button
-        title="Theme Healing Resources"
-        onPress={() => console.log('does this work')}
-      />
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.pagebutton}
+        onPress={() => navigation.navigate('Hope for Healing Guide')}
+      >
+        <Text style={styles.buttonText}>Hope for Healing Guide</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.pagebutton} // Reusing the same style for consistency
+        onPress={() => navigation.navigate('Themed Healing Resources')}
+      >
+        <Text style={styles.buttonText}>Resources Catalogue</Text>
+      </TouchableOpacity>
     </View>
   );
 }
