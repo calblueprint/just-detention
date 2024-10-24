@@ -5,8 +5,9 @@ import supabase from '@/supabase/createClient';
 import { styles } from './styles';
 
 export default function LegalRights({ navigation }: { navigation: any }) {
-  const [englishPressed, setEnglishPressed] = useState(true);
+  const [englishPressed, setEnglishPressed] = useState(true); // english or spanish 🧍‍♂️
 
+  // english pages var
   const [englishModules, setEnglishModules] = useState([
     {
       id: 'string',
@@ -20,6 +21,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ]);
 
+  // spanish pages var
   const [spanishModules, setSpanishModules] = useState([
     {
       id: 'string',
@@ -33,12 +35,13 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ]);
 
+  // get data from supabase on render; only once
   useEffect(() => {
     fetchData();
   }, []);
 
   async function fetchData() {
-    const englishResponse = await supabase
+    const englishResponse = await supabase // grab all the not spanish pages from the supabase table
       .from('prea_page')
       .select()
       .eq('spanish', false);
@@ -47,9 +50,9 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       throw englishError;
     }
     const newEnglishModules = englishData;
-    englishData.sort((a, b) => a.page_number - b.page_number);
+    englishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number
 
-    const spanishResponse = await supabase
+    const spanishResponse = await supabase // grab all the spanish pages from the supabase table
       .from('prea_page')
       .select()
       .eq('spanish', true);
@@ -58,16 +61,17 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       throw spanishError;
     }
     const newSpanishModules = spanishData;
-    spanishData.sort((a, b) => a.page_number - b.page_number);
+    spanishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number
 
-    setEnglishModules(newEnglishModules);
+    setEnglishModules(newEnglishModules); // update relative useStates
     setSpanishModules(newSpanishModules);
-    // return data;
   }
 
-  const currentModules = englishPressed ? englishModules : spanishModules;
+  const currentModules = englishPressed ? englishModules : spanishModules; // pages actually being rendered; conditiioned on lanugage boolean
 
+  // navigate to video player
   const goToVideo = (page_number: number, language: string) => {
+    // pass to video player array of [pages, index of page pressed, language of pages]
     navigation.navigate('Video Page', [
       currentModules,
       page_number - 1,
