@@ -79,6 +79,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     ]);
   };
 
+
   return (
     <>
       <Text style={styles.title}>Legal Rights</Text>
