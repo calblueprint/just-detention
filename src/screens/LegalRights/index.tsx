@@ -1,114 +1,97 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
+import supabase from '@/supabase/createClient';
 import { styles } from './styles';
 
 export default function LegalRights({ navigation }: { navigation: any }) {
+  const [englishPressed, setEnglishPressed] = useState(true);
+
   const rickRolls = () => {
+    // fetchData()
+    // .then(data => {
+    //   console.log(data)
+    //   // data.forEach((video_file) => {
+    //   //   let name = video_file['name']
+    //   //   let response = supabase.storage.from('PREA_videos').getPublicUrl('english/' + name);
+    //   //   let { data } = response;
+    //   //   console.log(data);
+    //   // });
+    // })
+    // .catch(error => {
+    //   console.error('Error fetching data:', error);
+    // });
     navigation.navigate('Video Page');
   };
 
-  const placeholderModulesEnglish = [
+  const [englishModules, setEnglishModules] = useState([
     {
-      title: 'Section Title 1',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
+      id: 'string',
+      is_short_answer: true,
+      page_number: 0,
+      parent_id: 'string',
+      short_answer: 'string',
+      spanish: false,
+      survey: 'string',
+      video_id: 'Section Title 1',
     },
-    {
-      title: 'Section Title 2',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 3',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 4',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 5',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 6',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 7',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 8',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Section Title 9',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-  ];
+  ]);
 
-  const placeholderModulesSpanish = [
+  const [spanishModules, setSpanishModules] = useState([
     {
-      title: 'Título de la Sección 1',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
+      id: 'string',
+      is_short_answer: true,
+      page_number: 0,
+      parent_id: 'string',
+      short_answer: 'string',
+      spanish: true,
+      survey: 'string',
+      video_id: 'Título de la Sección 1',
     },
     {
-      title: 'Título de la Sección 2',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
+      id: 'string',
+      is_short_answer: true,
+      page_number: 0,
+      parent_id: 'string',
+      short_answer: 'string',
+      spanish: true,
+      survey: 'string',
+      video_id: 'Título de la Sección 2',
     },
-    {
-      title: 'Título de la Sección 3',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 4',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 5',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 6',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 7',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 8',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-    {
-      title: 'Título de la Sección 9',
-      poster_url: placeholderPoster,
-      onClickFunction: rickRolls,
-    },
-  ];
+  ]);
 
-  const [spanishPressed, setSpanishPressed] = useState(false);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const currentModules = spanishPressed
-    ? placeholderModulesEnglish
-    : placeholderModulesSpanish;
+  async function fetchData() {
+    // const response = await supabase.storage.from('PREA_videos').list('spanish');
+    const englishResponse = await supabase
+      .from('prea_page')
+      .select()
+      .eq('spanish', false);
+    const { data: englishData, error: englishError } = englishResponse;
+    if (englishError) {
+      throw englishError;
+    }
+    const newEnglishModules = englishData;
+
+    const spanishResponse = await supabase
+      .from('prea_page')
+      .select()
+      .eq('spanish', true);
+    const { data: spanishData, error: spanishError } = spanishResponse;
+    if (spanishError) {
+      throw spanishError;
+    }
+    const newSpanishModules = spanishData;
+
+    setEnglishModules(newEnglishModules);
+    setSpanishModules(newSpanishModules);
+    // return data;
+  }
+
+  const currentModules = englishPressed ? englishModules : spanishModules;
 
   return (
     <>
@@ -117,11 +100,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
         <Pressable
           style={[
             styles.captionButtons,
-            spanishPressed && styles.captionButtonsPressed,
+            englishPressed && styles.captionButtonsPressed,
           ]}
           onPress={() => {
-            if (!spanishPressed) {
-              setSpanishPressed(!spanishPressed);
+            if (!englishPressed) {
+              setEnglishPressed(!englishPressed);
             }
           }}
         >
@@ -130,11 +113,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
         <Pressable
           style={[
             styles.captionButtons,
-            !spanishPressed && styles.captionButtonsPressed,
+            !englishPressed && styles.captionButtonsPressed,
           ]}
           onPress={() => {
-            if (spanishPressed) {
-              setSpanishPressed(!spanishPressed);
+            if (englishPressed) {
+              setEnglishPressed(!englishPressed);
             }
           }}
         >
@@ -144,15 +127,9 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       <ScrollView>
         <View style={styles.preaModulesView}>
           {currentModules.map(section => (
-            <Pressable
-              style={styles.preaModule}
-              onPress={section['onClickFunction']}
-            >
-              <Image
-                style={styles.modulePoster}
-                source={section['poster_url']}
-              />
-              <Text style={styles.moduleTitle}>{section['title']}</Text>
+            <Pressable style={styles.preaModule} onPress={rickRolls}>
+              <Image style={styles.modulePoster} source={placeholderPoster} />
+              <Text style={styles.moduleTitle}>{section['video_id']}</Text>
             </Pressable>
           ))}
         </View>
