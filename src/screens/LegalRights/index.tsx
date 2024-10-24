@@ -7,23 +7,6 @@ import { styles } from './styles';
 export default function LegalRights({ navigation }: { navigation: any }) {
   const [englishPressed, setEnglishPressed] = useState(true);
 
-  const rickRolls = () => {
-    // fetchData()
-    // .then(data => {
-    //   console.log(data)
-    //   // data.forEach((video_file) => {
-    //   //   let name = video_file['name']
-    //   //   let response = supabase.storage.from('PREA_videos').getPublicUrl('english/' + name);
-    //   //   let { data } = response;
-    //   //   console.log(data);
-    //   // });
-    // })
-    // .catch(error => {
-    //   console.error('Error fetching data:', error);
-    // });
-    navigation.navigate('Video Page');
-  };
-
   const [englishModules, setEnglishModules] = useState([
     {
       id: 'string',
@@ -85,6 +68,23 @@ export default function LegalRights({ navigation }: { navigation: any }) {
 
   const currentModules = englishPressed ? englishModules : spanishModules;
 
+  const goToVideo = () => {
+    // fetchData()
+    // .then(data => {
+    //   console.log(data)
+    //   // data.forEach((video_file) => {
+    //   //   let name = video_file['name']
+    //   //   let response = supabase.storage.from('PREA_videos').getPublicUrl('english/' + name);
+    //   //   let { data } = response;
+    //   //   console.log(data);
+    //   // });
+    // })
+    // .catch(error => {
+    //   console.error('Error fetching data:', error);
+    // });
+    navigation.navigate('Video Page', currentModules);
+  };
+
   return (
     <>
       <Text style={styles.title}>Legal Rights</Text>
@@ -119,7 +119,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       <ScrollView>
         <View style={styles.preaModulesView}>
           {currentModules.map(section => (
-            <Pressable style={styles.preaModule} onPress={rickRolls}>
+            <Pressable style={styles.preaModule} onPress={goToVideo}>
               <Image style={styles.modulePoster} source={placeholderPoster} />
               <Text style={styles.moduleTitle}>{section['video_id']}</Text>
             </Pressable>
