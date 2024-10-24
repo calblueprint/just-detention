@@ -48,16 +48,6 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       survey: 'string',
       video_id: 'Título de la Sección 1',
     },
-    {
-      id: 'string',
-      is_short_answer: true,
-      page_number: 0,
-      parent_id: 'string',
-      short_answer: 'string',
-      spanish: true,
-      survey: 'string',
-      video_id: 'Título de la Sección 2',
-    },
   ]);
 
   useEffect(() => {
@@ -75,6 +65,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       throw englishError;
     }
     const newEnglishModules = englishData;
+    englishData.sort((a, b) => a.page_number - b.page_number);
 
     const spanishResponse = await supabase
       .from('prea_page')
@@ -85,6 +76,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       throw spanishError;
     }
     const newSpanishModules = spanishData;
+    spanishData.sort((a, b) => a.page_number - b.page_number);
 
     setEnglishModules(newEnglishModules);
     setSpanishModules(newSpanishModules);
