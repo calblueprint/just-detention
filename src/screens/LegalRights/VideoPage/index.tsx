@@ -23,6 +23,19 @@ export default function VideoPage(testProp: any) {
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
   );
 
+  const nextPage = () => {
+    let moduleLength = preaData.length;
+    if (index < moduleLength - 1) {
+      setIndex(index + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
   useEffect(() => {
     setPreaData(testProp['route']['params'][0]);
     setIndex(testProp['route']['params'][1]);
@@ -35,20 +48,10 @@ export default function VideoPage(testProp: any) {
       .getPublicUrl(language + '/' + preaData[index]['video_id'] + '.mp4');
     let { data } = response;
     setVideoLink(data['publicUrl']);
-    console.log(videoLink);
   }, [preaData, index, language]);
 
   return (
     <ScrollView style={styles.container}>
-      {/* <Video
-        source={require('@/assets/videos/da_link.mp4')}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        shouldPlay
-        isLooping
-        style={styles.video}
-      /> */}
       <Video
         source={{ uri: videoLink }}
         rate={1.0}
@@ -60,10 +63,10 @@ export default function VideoPage(testProp: any) {
       />
 
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.captionButtons]}>
+        <Pressable style={[styles.captionButtons]} onPress={prevPage}>
           <Text style={styles.buttonText}>{'<   Previous Section'}</Text>
         </Pressable>
-        <Pressable style={[styles.captionButtons]}>
+        <Pressable style={[styles.captionButtons]} onPress={nextPage}>
           <Text style={styles.buttonText}>{'Next Section   >'}</Text>
         </Pressable>
       </View>

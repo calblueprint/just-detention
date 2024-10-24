@@ -38,7 +38,6 @@ export default function LegalRights({ navigation }: { navigation: any }) {
   }, []);
 
   async function fetchData() {
-    // const response = await supabase.storage.from('PREA_videos').list('spanish');
     const englishResponse = await supabase
       .from('prea_page')
       .select()
@@ -69,19 +68,6 @@ export default function LegalRights({ navigation }: { navigation: any }) {
   const currentModules = englishPressed ? englishModules : spanishModules;
 
   const goToVideo = (page_number: number, language: string) => {
-    // fetchData()
-    // .then(data => {
-    //   console.log(data)
-    //   // data.forEach((video_file) => {
-    //   //   let name = video_file['name']
-    //   //   let response = supabase.storage.from('PREA_videos').getPublicUrl('english/' + name);
-    //   //   let { data } = response;
-    //   //   console.log(data);
-    //   // });
-    // })
-    // .catch(error => {
-    //   console.error('Error fetching data:', error);
-    // });
     navigation.navigate('Video Page', [
       currentModules,
       page_number - 1,
