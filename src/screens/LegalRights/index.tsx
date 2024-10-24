@@ -68,7 +68,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
 
   const currentModules = englishPressed ? englishModules : spanishModules;
 
-  const goToVideo = () => {
+  const goToVideo = (page_number: number, language: string) => {
     // fetchData()
     // .then(data => {
     //   console.log(data)
@@ -82,7 +82,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     // .catch(error => {
     //   console.error('Error fetching data:', error);
     // });
-    navigation.navigate('Video Page', currentModules);
+    navigation.navigate('Video Page', [
+      currentModules,
+      page_number - 1,
+      language,
+    ]);
   };
 
   return (
@@ -119,7 +123,15 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       <ScrollView>
         <View style={styles.preaModulesView}>
           {currentModules.map(section => (
-            <Pressable style={styles.preaModule} onPress={goToVideo}>
+            <Pressable
+              style={styles.preaModule}
+              onPress={() =>
+                goToVideo(
+                  section['page_number'],
+                  section['spanish'] ? 'spanish' : 'english',
+                )
+              }
+            >
               <Image style={styles.modulePoster} source={placeholderPoster} />
               <Text style={styles.moduleTitle}>{section['video_id']}</Text>
             </Pressable>
