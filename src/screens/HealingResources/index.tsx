@@ -11,7 +11,7 @@ export default function HealingResources({ navigation }: { navigation: any }) {
         <Text style={styles.buttonText}>Hope for Healing Guide</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.pagebutton} // Reusing the same style for consistency
+        style={styles.pagebutton}
         onPress={() => navigation.navigate('Themed Healing Resources')}
       >
         <Text style={styles.buttonText}>Resources Catalogue</Text>

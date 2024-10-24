@@ -6,7 +6,6 @@ export const getHealingResourceData = async (): Promise<HealingResource[]> => {
   if (error) {
     throw new Error(`Error fetching resources: ${error.message}`);
   }
-  // Convert comma-separated list of strings from `topics` into an array of strings
   return data.map(resource => ({
     ...resource,
     topics: resource.topics

@@ -29,7 +29,6 @@ export default function HealingCatalogue() {
     {} as Record<string, HealingResource[]>,
   );
 
-  // Scroll to top of theme header
   const scrollToTheme = (index: number) => {
     const targetY = headerPositions[index] || 0;
     const paddingTop = 30;
@@ -39,7 +38,6 @@ export default function HealingCatalogue() {
     });
   };
 
-  // Captures the position of headers as being rendered to use for scrolling
   const onLayoutHeader =
     (index: number) => (event: { nativeEvent: { layout: { y: number } } }) => {
       const { y } = event.nativeEvent.layout;
@@ -67,7 +65,11 @@ export default function HealingCatalogue() {
         <View style={styles.resourcesContainer}>
           {themes.map((theme, index) => (
             <>
-              <View style={styles.themeHeader} onLayout={onLayoutHeader(index)}>
+              <View
+                style={styles.themeHeader}
+                onLayout={onLayoutHeader(index)}
+                key={index}
+              >
                 <Text style={styles.themeHeaderText}>{theme}</Text>
               </View>
               <View style={styles.cardsContainer}>
