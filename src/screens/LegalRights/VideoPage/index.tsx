@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Video } from 'expo-av';
 import { styles } from './styles';
 
-export default function VideoPage() {
+export default function VideoPage(testProp: any) {
+  useEffect(() => {
+    console.log(testProp['route']['params']); //data from legal rights yipee
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <Video
