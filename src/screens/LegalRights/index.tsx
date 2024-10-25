@@ -112,7 +112,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       </View>
       <ScrollView>
         <View style={styles.preaModulesView}>
-          {currentModules.map(section => (
+          {currentModules.map((section, index) => (
             <Pressable
               style={styles.preaModule}
               onPress={() =>
