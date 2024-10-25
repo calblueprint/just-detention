@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
+import { LegalScreenProps } from '@/navigation/types';
 import { styles } from './styles';
 
-export default function LegalRights({ navigation }: { navigation: any }) {
+export default function LegalRights({
+  navigation,
+}: LegalScreenProps<'LegalRights'>) {
   const rickRolls = () => {
-    navigation.navigate('Video Page');
+    navigation.navigate('VideoPage');
   };
 
   const placeholderModulesEnglish = [
@@ -143,10 +146,11 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       </View>
       <ScrollView>
         <View style={styles.preaModulesView}>
-          {currentModules.map(section => (
+          {currentModules.map((section, index) => (
             <Pressable
               style={styles.preaModule}
               onPress={section['onClickFunction']}
+              key={index}
             >
               <Image
                 style={styles.modulePoster}

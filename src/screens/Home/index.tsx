@@ -1,21 +1,5 @@
-import { Button, Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-export default function Home({ navigation }: { navigation: any }) {
-  return (
-    <View>
-      <Text>hello</Text>
-      <Button
-        title="Healing Resources"
-        onPress={() => navigation.navigate('Healing Resources')}
-      />
-      <Button
-        title="Legal Rights"
-        onPress={() => navigation.navigate('Legal Rights')}
-      />
-      <Button
-        title="Seek Help"
-        onPress={() => navigation.navigate('Seek Help')}
-      />
-    </View>
-  );
+export default function HomeScreen() {
+  return <Text>HOME!!!</Text>;
 }
