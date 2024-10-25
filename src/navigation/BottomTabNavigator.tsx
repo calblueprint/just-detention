@@ -4,11 +4,11 @@ import HomeScreen from 'src/screens/Home/';
 import HealingResourcesNavigator from './stacks/HealingResourcesNavigator';
 import LegalRightsNavigator from './stacks/LegalRightsNavigator';
 import SeekHelpNavigator from './stacks/SeekHelpNavigator';
-import { BottomTabParamList } from './types';
+import { BottomTabParams } from './types';
 
 const initialRouteName = 'Healing';
 
-const Tab = createBottomTabNavigator<BottomTabParamList>();
+const Tab = createBottomTabNavigator<BottomTabParams>();
 
 export default function NavigationBar() {
   return (

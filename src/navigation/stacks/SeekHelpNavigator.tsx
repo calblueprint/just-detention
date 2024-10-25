@@ -2,9 +2,9 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SeekHelp from '@/screens/SeekHelp';
 import ResourceList from '@/screens/SeekHelp/ResourceList';
-import { SeekHelpParams } from '../types';
+import { SeekHelpStackParams } from '../types';
 
-const SeekHelpStack = createNativeStackNavigator<SeekHelpParams>();
+const SeekHelpStack = createNativeStackNavigator<SeekHelpStackParams>();
 
 export default function SeekHelpNavigator() {
   return (

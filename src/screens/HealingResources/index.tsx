@@ -1,7 +1,10 @@
 import { Text, TouchableOpacity, View } from 'react-native';
+import { HealingScreenProps } from '@/navigation/types';
 import styles from './styles';
 
-export default function HealingResources({ navigation }: { navigation: any }) {
+export default function HealingResources({
+  navigation,
+}: HealingScreenProps<'HealingResources'>) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
