@@ -5,8 +5,10 @@ import HealingResources from '@/screens/HealingResources';
 import HealingCatalogue from '@/screens/HealingResources/HealingCatalogue';
 import HFHGuide from '@/screens/HealingResources/HFHGuide';
 import Home from '@/screens/Home';
-import LegalRights from '@/screens/LegalRights';
+import LegalRights from '@/screens/LegalRights/index';
+import VideoPage from '@/screens/LegalRights/VideoPage';
 import SeekHelp from '@/screens/SeekHelp';
+import resourceList from '@/screens/SeekHelp/ResourceList';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,8 @@ export default function App() {
           component={HealingCatalogue}
         />
         <Stack.Screen name="Hope for Healing Guide" component={HFHGuide} />
+        <Stack.Screen name="Resource List" component={resourceList} />
+        <Stack.Screen name="Video Page" component={VideoPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
