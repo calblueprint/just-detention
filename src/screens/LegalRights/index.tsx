@@ -5,7 +5,7 @@ import { styles } from './styles';
 
 export default function LegalRights({ navigation }: { navigation: any }) {
   const rickRolls = () => {
-    navigation.navigate('Video Page');
+    navigation.navigate('VideoPage');
   };
 
   const placeholderModulesEnglish = [

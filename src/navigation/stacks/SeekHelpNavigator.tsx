@@ -1,18 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import index from '../../screens/SeekHelp/index';
+import SeekHelp from '@/screens/SeekHelp';
+import ResourceList from '@/screens/SeekHelp/ResourceList';
 import { SeekHelpParams } from '../types';
 
 const SeekHelpStack = createNativeStackNavigator<SeekHelpParams>();
 
 export default function SeekHelpNavigator() {
   return (
-    <SeekHelpStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <SeekHelpStack.Screen name="Name" component={index} />
+    <SeekHelpStack.Navigator>
+      <SeekHelpStack.Screen name="SeekHelp" component={SeekHelp} />
+      <SeekHelpStack.Screen name="ResourceList" component={ResourceList} />
     </SeekHelpStack.Navigator>
   );
 }

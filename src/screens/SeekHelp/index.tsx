@@ -7,13 +7,13 @@ export default function SeekHelp({ navigation }: { navigation: any }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Resource List')}
+        onPress={() => navigation.navigate('ResourceList')}
       >
         <Text style={styles.buttonText}>California</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Resource List')}
+        onPress={() => navigation.navigate('ResourceList')}
       >
         <Text style={styles.buttonText}>National</Text>
       </TouchableOpacity>

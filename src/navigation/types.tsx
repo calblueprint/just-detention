@@ -1,15 +1,19 @@
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 
 export type LegalStackParams = {
-  Name: undefined;
+  LegalRights: undefined;
+  VideoPage: undefined;
 };
 
 export type HealingStackParams = {
-  Name: undefined;
+  HealingResources: undefined;
+  HopeForHealingGuide: undefined;
+  HealingCatalogue: undefined;
 };
 
 export type SeekHelpParams = {
-  Name: undefined;
+  SeekHelp: undefined;
+  ResourceList: undefined;
 };
 
 export type BottomTabParamList = {
