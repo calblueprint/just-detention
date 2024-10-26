@@ -123,7 +123,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
               }
             >
               <Image style={styles.modulePoster} source={placeholderPoster} />
-              <Text style={styles.moduleTitle}>{section['video_id']}</Text>
+              <Text style={styles.moduleTitle}>{section.video_id}</Text>
             </Pressable>
           ))}
         </View>

@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
+// import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
 import { Video } from 'expo-av';
 import supabase from '@/supabase/createClient';
 import { styles } from './styles';
 
 export default function VideoPage(testProp: any) {
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [paused, setPaused] = useState(false);
+  // const [playerState, setPlayerState] = useState(PLAYER_STATES.PLAYING);
+
   // var for array of all the pages for the current language
   const [preaData, setPreaData] = useState([
     {
@@ -18,7 +26,7 @@ export default function VideoPage(testProp: any) {
       video_id: 'Section Title 1',
     },
   ]);
-  const [index, setIndex] = useState(Infinity); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
+  const [index, setIndex] = useState(10); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
   const [language, setLanguage] = useState('english'); // which language associated to array of pages
 
   const videoLinkRef = useRef(
@@ -38,20 +46,20 @@ export default function VideoPage(testProp: any) {
 
   // read in all the variables passed in from legal rights page; only once when initally rendered
   useEffect(() => {
-    setPreaData(testProp['route']['params'][0]);
-    setIndex(testProp['route']['params'][1]);
-    setLanguage(testProp['route']['params'][2]);
+    setPreaData(testProp.route.params[0]);
+    setIndex(testProp.route.params[1]);
+    setLanguage(testProp.route.params[2]);
   }, []);
 
   useEffect(() => {
     const fetchVideoLink = async () => {
       let response = supabase.storage
         .from('PREA_videos')
-        .getPublicUrl(`${language}/${preaData[index]['video_id']}.mp4`);
+        .getPublicUrl(`${language}/${preaData[index].video_id}.mp4`);
 
       let { data } = response;
 
-      videoLinkRef.current = data['publicUrl']; // Update the ref with the new video link
+      videoLinkRef.current = data.publicUrl; // Update the ref with the new video link
 
       setRenderTrigger(prev => prev + 1); // Trigger a re-render to apply the new link
     };
@@ -62,7 +70,7 @@ export default function VideoPage(testProp: any) {
   return (
     <ScrollView style={styles.container}>
       <Video
-        key={renderTrigger} // Changing the key forces re-mount and playback reset
+        key={renderTrigger} // changing the key forces re-mount and playback reset
         source={{ uri: videoLinkRef.current }}
         rate={1.0}
         volume={1.0}
@@ -71,6 +79,26 @@ export default function VideoPage(testProp: any) {
         isLooping
         style={styles.video}
       />
+      {/* <MediaControls
+        isFullScreen={false}
+        duration={duration}
+        isLoading={isLoading}
+        mainColor="orange"
+        containerStyle={styles.videoContainer}
+        // onFullScreen={noop}
+        onPaused={() => console.log('paused')}
+        onReplay={() => console.log('replay')}
+        onSeek={() => setPlayerState(PLAYER_STATES.PLAYING)}
+        onSeeking={() => console.log('seeking')}
+        playerState={playerState}
+        progress={currentTime}
+      >
+        <MediaControls.Toolbar>
+          <View>
+            <Text>I'm a custom toolbar </Text>
+          </View>
+        </MediaControls.Toolbar>
+      </MediaControls> */}
 
       <View style={styles.buttonContainer}>
         <Pressable style={[styles.captionButtons]} onPress={prevPage}>
