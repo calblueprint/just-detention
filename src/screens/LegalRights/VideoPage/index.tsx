@@ -77,32 +77,12 @@ export default function VideoPage({
         isLooping
         style={styles.video}
       />
-      {/* <MediaControls
-        isFullScreen={false}
-        duration={duration}
-        isLoading={isLoading}
-        mainColor="orange"
-        containerStyle={styles.videoContainer}
-        // onFullScreen={noop}
-        onPaused={() => console.log('paused')}
-        onReplay={() => console.log('replay')}
-        onSeek={() => setPlayerState(PLAYER_STATES.PLAYING)}
-        onSeeking={() => console.log('seeking')}
-        playerState={playerState}
-        progress={currentTime}
-      >
-        <MediaControls.Toolbar>
-          <View>
-            <Text>I'm a custom toolbar </Text>
-          </View>
-        </MediaControls.Toolbar>
-      </MediaControls> */}
 
       <View style={styles.buttonContainer}>
-        <Pressable style={[styles.captionButtons]} onPress={prevPage}>
+        <Pressable style={[styles.captionButtons]}>
           <Text style={styles.buttonText}>{'<   Previous Section'}</Text>
         </Pressable>
-        <Pressable style={[styles.captionButtons]} onPress={nextPage}>
+        <Pressable style={[styles.captionButtons]}>
           <Text style={styles.buttonText}>{'Next Section   >'}</Text>
         </Pressable>
       </View>
