@@ -18,7 +18,7 @@ export default function VideoPage(testProp: any) {
       video_id: 'Section Title 1',
     },
   ]);
-  const [index, setIndex] = useState(0); // index of current page in full array of pages
+  const [index, setIndex] = useState(Infinity); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
   const [language, setLanguage] = useState('english'); // which language associated to array of pages
 
   const videoLinkRef = useRef(
