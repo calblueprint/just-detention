@@ -7,7 +7,7 @@ import { styles } from './styles';
 export default function LegalRights({ navigation }: { navigation: any }) {
   const [englishPressed, setEnglishPressed] = useState(true); // english or spanish 🧍‍♂️
 
-  // english pages var
+  // english pages var mhm
   const [englishModules, setEnglishModules] = useState([
     {
       id: 'string',
@@ -21,7 +21,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ]);
 
-  // spanish pages var
+  // spanish pages var mhm
   const [spanishModules, setSpanishModules] = useState([
     {
       id: 'string',
@@ -35,7 +35,7 @@ export default function LegalRights({ navigation }: { navigation: any }) {
     },
   ]);
 
-  // get data from supabase on render; only once
+  // get data from supabase on render; only once fr
   useEffect(() => {
     fetchData();
   }, []);
@@ -50,9 +50,9 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       throw englishError;
     }
     const newEnglishModules = englishData;
-    englishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number
+    englishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number yur
 
-    const spanishResponse = await supabase // grab all the spanish pages from the supabase table
+    const spanishResponse = await supabase // grab all the spanish pages from the supabase table yk
       .from('prea_page')
       .select()
       .eq('spanish', true);

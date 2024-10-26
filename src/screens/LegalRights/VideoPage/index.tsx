@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Video } from 'expo-av';
 import supabase from '@/supabase/createClient';
@@ -21,10 +21,12 @@ export default function VideoPage(testProp: any) {
   const [index, setIndex] = useState(0); // index of current page in full array of pages
   const [language, setLanguage] = useState('english'); // which language associated to array of pages
 
-  // video link associated to current page; used for src of video element
-  const [videoLink, setVideoLink] = useState(
+  const videoLinkRef = useRef(
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
   );
+
+  //
+  const [renderTrigger, setRenderTrigger] = useState(0);
 
   const nextPage = () => {
     setIndex(prevIndex => Math.min(prevIndex + 1, preaData.length - 1)); // next index in array of pages
@@ -42,17 +44,26 @@ export default function VideoPage(testProp: any) {
   }, []);
 
   useEffect(() => {
-    let response = supabase.storage // fetch current http link for current page
-      .from('PREA_videos')
-      .getPublicUrl(language + '/' + preaData[index]['video_id'] + '.mp4');
-    let { data } = response;
-    setVideoLink(data['publicUrl']); // set link for video link
+    const fetchVideoLink = async () => {
+      let response = supabase.storage
+        .from('PREA_videos')
+        .getPublicUrl(`${language}/${preaData[index]['video_id']}.mp4`);
+
+      let { data } = response;
+
+      videoLinkRef.current = data['publicUrl']; // Update the ref with the new video link
+
+      setRenderTrigger(prev => prev + 1); // Trigger a re-render to apply the new link
+    };
+
+    fetchVideoLink();
   }, [index]); // run useEffect every time value of index changes
 
   return (
     <ScrollView style={styles.container}>
       <Video
-        source={{ uri: videoLink }}
+        key={renderTrigger} // Changing the key forces re-mount and playback reset
+        source={{ uri: videoLinkRef.current }}
         rate={1.0}
         volume={1.0}
         isMuted={false}
