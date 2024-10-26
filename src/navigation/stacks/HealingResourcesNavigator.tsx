@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HealingResources from '@/screens/HealingResources';
 import HealingCatalogue from '@/screens/HealingResources/HealingCatalogue';
-import HFHGuide from '@/screens/HealingResources/HFHGuide';
+import HopeHealingGuide from '@/screens/HealingResources/HopeHealingGuide';
 import { HealingStackParams } from '../types';
 
 const HealingStack = createNativeStackNavigator<HealingStackParams>();
@@ -18,7 +18,7 @@ export default function HealingResourcesNavigator() {
         name="HealingCatalogue"
         component={HealingCatalogue}
       />
-      <HealingStack.Screen name="HopeForHealingGuide" component={HFHGuide} />
+      <HealingStack.Screen name="HopeForHealingGuide" component={HopeHealingGuide} />
     </HealingStack.Navigator>
   );
 }
