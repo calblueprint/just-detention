@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { HealingResource, Resource, VideoResource } from '@/types/types';
+=======
+import { HealingResource, Resource } from '@/types/types';
+>>>>>>> 6163fbc (finished sprint)
 import supabase from '../createClient';
 
 export const getHealingResourceData = async (): Promise<HealingResource[]> => {
