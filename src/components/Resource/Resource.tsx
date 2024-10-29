@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { ListItem } from '@rneui/themed';
+import { SeekHelpProps } from '@/types/types';
 import { styles } from './styles';
-
-interface SeekHelpProps {
-  org_name: string;
-  summary: string;
-  address: string;
-  phone_number: string;
-  hotline_number: string;
-  office_hours: string;
-  tags: string;
-}
 
 export default function ResourceT({
   org_name,
@@ -26,21 +17,27 @@ export default function ResourceT({
     <View style={styles.resourceCard}>
       <ListItem.Accordion
         content={
-          <View style={styles.headerContent}>
+          <TouchableOpacity
+            style={styles.headerContent}
+            onPress={() => setExpanded(!expanded)}
+          >
             <Text style={styles.orgName}>{org_name}</Text>
             {!expanded && (
               <Text style={styles.summaryPreview}>
                 {summary.slice(0, 60)}...
               </Text>
             )}
-          </View>
+          </TouchableOpacity>
         }
         isExpanded={expanded}
-        onPress={() => setExpanded(!expanded)}
+        onPress={() => setExpanded(!expanded)} // Handles toggling when header is pressed
         containerStyle={{ padding: 0 }}
       >
         {expanded && (
-          <View style={styles.expandedContent}>
+          <TouchableOpacity
+            style={styles.expandedContent}
+            onPress={() => setExpanded(false)} // Collapses content when expanded section is pressed
+          >
             <Text style={styles.summary}>{summary}</Text>
 
             <View style={styles.infoContainer}>
@@ -57,7 +54,7 @@ export default function ResourceT({
               <Text style={styles.label}>Office Hours:</Text>
               <Text style={styles.info}>{office_hours}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       </ListItem.Accordion>
     </View>

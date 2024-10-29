@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   },
   headerContent: {
     flexDirection: 'column',
+    width: '90%',
   },
   orgName: {
     fontSize: 18,
