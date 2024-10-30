@@ -2,10 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 // import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
 import { Video } from 'expo-av';
+import { LegalScreenProps } from '@/navigation/types';
 import supabase from '@/supabase/createClient';
 import { styles } from './styles';
 
-export default function VideoPage(testProp: any) {
+export default function VideoPage({
+  navigation,
+  route,
+}: LegalScreenProps<'VideoPage'>) {
+  const { currentModules, pageNumber, language } = route.params;
+
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -27,7 +33,7 @@ export default function VideoPage(testProp: any) {
     },
   ]);
   const [index, setIndex] = useState(10); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
-  const [language, setLanguage] = useState('english'); // which language associated to array of pages
+  // const [language, setLanguage] = useState('english'); // which language associated to array of pages
 
   const videoLinkRef = useRef(
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
@@ -46,9 +52,8 @@ export default function VideoPage(testProp: any) {
 
   // read in all the variables passed in from legal rights page; only once when initally rendered
   useEffect(() => {
-    setPreaData(testProp.route.params[0]);
-    setIndex(testProp.route.params[1]);
-    setLanguage(testProp.route.params[2]);
+    setPreaData(currentModules);
+    setIndex(pageNumber);
   }, []);
 
   useEffect(() => {

@@ -10,3 +10,14 @@ export type HealingResource = {
   is_video: boolean;
   topics: string[];
 };
+
+export type VideoResource = {
+  id: string;
+  is_short_answer: boolean;
+  page_number: number;
+  parent_id: string;
+  short_answer: string;
+  spanish: boolean;
+  survey: string;
+  video_id: string;
+};
