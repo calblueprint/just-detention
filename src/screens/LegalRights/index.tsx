@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
+import { LegalScreenProps } from '@/navigation/types';
 import supabase from '@/supabase/createClient';
 import { styles } from './styles';
 
-export default function LegalRights({ navigation }: { navigation: any }) {
+export default function LegalRights({
+  navigation,
+}: LegalScreenProps<'LegalRights'>) {
   const [englishPressed, setEnglishPressed] = useState(true); // english or spanish 🧍‍♂️
 
   // english pages var mhm
@@ -70,15 +73,20 @@ export default function LegalRights({ navigation }: { navigation: any }) {
   const currentModules = englishPressed ? englishModules : spanishModules; // pages actually being rendered; conditiioned on lanugage boolean
 
   // navigate to video player
-  const goToVideo = (page_number: number, language: string) => {
+  const goToVideo = (pageNumber: number, language: string) => {
     // pass to video player array of [pages, index of page pressed, language of pages]
-    navigation.navigate('Video Page', [
-      currentModules,
-      page_number - 1,
-      language,
-    ]);
-  };
+    // navigation.navigate('VideoPage', [
+    //   currentModules,
+    //   page_number - 1,
+    //   language,
+    // ]);
 
+    navigation.navigate('VideoPage', {
+      currentModules: currentModules,
+      pageNumber: pageNumber - 1,
+      language: language,
+    });
+  };
 
   return (
     <>
@@ -131,5 +139,4 @@ export default function LegalRights({ navigation }: { navigation: any }) {
       </ScrollView>
     </>
   );
-}
 }
