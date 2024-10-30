@@ -49,7 +49,6 @@ export default function ResourceList() {
     const filtered = resources.filter(resource =>
       resource.tags.split(',').some((tag: string) => tags.includes(tag.trim())),
     );
-
     setFilteredResources(filtered);
   };
 
@@ -59,7 +58,11 @@ export default function ResourceList() {
         {filters.map((filter, index) => (
           <TouchableOpacity
             key={index}
-            style={styles.filterButton}
+            style={
+              selectedFilter == filter
+                ? styles.selectedFilterButton
+                : styles.filterButton
+            }
             onPress={() => applyFilter(filter)}
           >
             <Text style={styles.buttonText}>{filter}</Text>
@@ -69,18 +72,22 @@ export default function ResourceList() {
 
       <ScrollView style={styles.rightPanel}>
         {filteredResources.length > 0 ? (
-          filteredResources.map((resource, index) => (
-            <ResourceT
-              key={index}
-              org_name={resource.org_name}
-              summary={resource.summary}
-              address={resource.address}
-              phone_number={resource.phone_number}
-              office_hours={resource.office_hours}
-              tags={resource.tags}
-              hotline_number={resource.hotline_number}
-            />
-          ))
+          filteredResources
+            .sort(function (a, b) {
+              return a.org_name.localeCompare(b.org_name);
+            })
+            .map((resource, index) => (
+              <ResourceT
+                key={index}
+                org_name={resource.org_name}
+                summary={resource.summary}
+                address={resource.address}
+                phone_number={resource.phone_number}
+                office_hours={resource.office_hours}
+                tags={resource.tags}
+                hotline_number={resource.hotline_number}
+              />
+            ))
         ) : (
           <Text>No resources found</Text>
         )}

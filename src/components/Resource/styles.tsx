@@ -4,8 +4,10 @@ export const styles = StyleSheet.create({
   resourceCard: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 10,
-    marginVertical: 5,
+    padding: 15,
+    marginVertical: 20,
+    marginRight: 20,
+    marginLeft: 20,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -13,15 +15,17 @@ export const styles = StyleSheet.create({
   },
   headerContent: {
     flexDirection: 'column',
-    width: '90%',
+    width: '95%',
   },
   orgName: {
     fontSize: 18,
+    paddingTop: 5,
     fontWeight: 'bold',
   },
   summaryPreview: {
     fontSize: 14,
     color: '#666',
+    paddingBottom: 5,
   },
   expandedContent: {
     marginTop: 10,
@@ -34,7 +38,7 @@ export const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    marginBottom: 10,
   },
   label: {
     fontWeight: '600',
