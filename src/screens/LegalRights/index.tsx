@@ -3,6 +3,8 @@ import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { LegalScreenProps } from '@/navigation/types';
 import supabase from '@/supabase/createClient';
+import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
+import { VideoResource } from '@/types/types';
 import { styles } from './styles';
 
 export default function LegalRights({
@@ -11,7 +13,7 @@ export default function LegalRights({
   const [englishPressed, setEnglishPressed] = useState(true); // english or spanish 🧍‍♂️
 
   // english pages var mhm
-  const [englishModules, setEnglishModules] = useState([
+  const [englishModules, setEnglishModules] = useState<VideoResource[]>([
     {
       id: 'string',
       is_short_answer: true,
@@ -44,43 +46,14 @@ export default function LegalRights({
   }, []);
 
   async function fetchData() {
-    const englishResponse = await supabase // grab all the not spanish pages from the supabase table
-      .from('prea_page')
-      .select()
-      .eq('spanish', false);
-    const { data: englishData, error: englishError } = englishResponse;
-    if (englishError) {
-      throw englishError;
-    }
-    const newEnglishModules = englishData;
-    englishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number yur
-
-    const spanishResponse = await supabase // grab all the spanish pages from the supabase table yk
-      .from('prea_page')
-      .select()
-      .eq('spanish', true);
-    const { data: spanishData, error: spanishError } = spanishResponse;
-    if (spanishError) {
-      throw spanishError;
-    }
-    const newSpanishModules = spanishData;
-    spanishData.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number
-
-    setEnglishModules(newEnglishModules); // update relative useStates
-    setSpanishModules(newSpanishModules);
+    setEnglishModules(await getPreaByLanguage(false)); // update relative useStates
+    setSpanishModules(await getPreaByLanguage(true));
   }
 
   const currentModules = englishPressed ? englishModules : spanishModules; // pages actually being rendered; conditiioned on lanugage boolean
 
   // navigate to video player
   const goToVideo = (pageNumber: number, language: string) => {
-    // pass to video player array of [pages, index of page pressed, language of pages]
-    // navigation.navigate('VideoPage', [
-    //   currentModules,
-    //   page_number - 1,
-    //   language,
-    // ]);
-
     navigation.navigate('VideoPage', {
       currentModules: currentModules,
       pageNumber: pageNumber - 1,

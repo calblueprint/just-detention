@@ -4,6 +4,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Video } from 'expo-av';
 import { LegalScreenProps } from '@/navigation/types';
 import supabase from '@/supabase/createClient';
+import { getVideoLink } from '@/supabase/queries/storageQueries';
 import { styles } from './styles';
 
 export default function VideoPage({
@@ -58,14 +59,7 @@ export default function VideoPage({
 
   useEffect(() => {
     const fetchVideoLink = async () => {
-      let response = supabase.storage
-        .from('PREA_videos')
-        .getPublicUrl(`${language}/${preaData[index].video_id}.mp4`);
-
-      let { data } = response;
-
-      videoLinkRef.current = data.publicUrl; // Update the ref with the new video link
-
+      videoLinkRef.current = getVideoLink(language, preaData[index].video_id); // Update the ref with the new video link
       setRenderTrigger(prev => prev + 1); // Trigger a re-render to apply the new link
     };
 
