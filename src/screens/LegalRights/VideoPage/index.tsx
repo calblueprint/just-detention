@@ -3,7 +3,6 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 // import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
 import { Video } from 'expo-av';
 import { LegalScreenProps } from '@/navigation/types';
-import supabase from '@/supabase/createClient';
 import { getVideoLink } from '@/supabase/queries/storageQueries';
 import { styles } from './styles';
 
@@ -13,11 +12,11 @@ export default function VideoPage({
 }: LegalScreenProps<'VideoPage'>) {
   const { currentModules, pageNumber, language } = route.params;
 
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [paused, setPaused] = useState(false);
+  // const [currentTime, setCurrentTime] = useState(0);
+  // const [duration, setDuration] = useState(0);
+  // const [isFullScreen, setIsFullScreen] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [paused, setPaused] = useState(false);
   // const [playerState, setPlayerState] = useState(PLAYER_STATES.PLAYING);
 
   // var for array of all the pages for the current language

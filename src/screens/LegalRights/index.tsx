@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { LegalScreenProps } from '@/navigation/types';
-import supabase from '@/supabase/createClient';
 import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
 import { VideoResource } from '@/types/types';
 import { styles } from './styles';
@@ -27,7 +26,7 @@ export default function LegalRights({
   ]);
 
   // spanish pages var mhm
-  const [spanishModules, setSpanishModules] = useState([
+  const [spanishModules, setSpanishModules] = useState<VideoResource[]>([
     {
       id: 'string',
       is_short_answer: true,
