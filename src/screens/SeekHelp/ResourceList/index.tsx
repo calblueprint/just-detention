@@ -55,6 +55,9 @@ export default function ResourceList() {
   return (
     <View style={styles.container}>
       <View style={styles.leftPanel}>
+        <View style={styles.selectTextContainer}>
+          <Text style={styles.selectText}>Select Resources Type:</Text>
+        </View>
         {filters.map((filter, index) => (
           <TouchableOpacity
             key={index}
@@ -65,7 +68,15 @@ export default function ResourceList() {
             }
             onPress={() => applyFilter(filter)}
           >
-            <Text style={styles.buttonText}>{filter}</Text>
+            <Text
+              style={
+                selectedFilter == filter
+                  ? styles.selectedButtonText
+                  : styles.buttonText
+              }
+            >
+              {filter}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
