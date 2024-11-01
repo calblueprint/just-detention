@@ -1,9 +1,14 @@
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { VideoResource } from '@/types/types';
 
 export type LegalStackParams = {
   LegalRights: undefined;
-  VideoPage: undefined;
+  VideoPage: {
+    currentModules: VideoResource[];
+    pageNumber: number;
+    language: string;
+  };
 };
 
 export type HealingStackParams = {

@@ -20,3 +20,13 @@ export interface SeekHelpProps {
   office_hours: string;
   tags: string;
 }
+export type VideoResource = {
+  id: string;
+  is_short_answer: boolean;
+  page_number: number;
+  parent_id: string;
+  short_answer: string;
+  spanish: boolean;
+  survey: string;
+  video_id: string;
+};

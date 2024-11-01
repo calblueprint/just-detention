@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     padding: 30,
   },
+  videoContainer: {},
   video: {
     width: '100%',
     height: 630,
