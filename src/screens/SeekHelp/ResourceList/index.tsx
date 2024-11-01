@@ -62,7 +62,7 @@ export default function ResourceList() {
           <TouchableOpacity
             key={index}
             style={
-              selectedFilter == filter
+              selectedFilter === filter
                 ? styles.selectedFilterButton
                 : styles.filterButton
             }
@@ -70,7 +70,7 @@ export default function ResourceList() {
           >
             <Text
               style={
-                selectedFilter == filter
+                selectedFilter === filter
                   ? styles.selectedButtonText
                   : styles.buttonText
               }
