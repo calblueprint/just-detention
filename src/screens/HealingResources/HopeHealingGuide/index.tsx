@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 type RootDrawerParamList = {
   ChapterOne: undefined;
@@ -15,7 +14,7 @@ type RootDrawerParamList = {
 function ChapterOne() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to the Hope for Healing Guide!</Text>
+      <Text>Content of Chapter 1</Text>
     </View>
   );
 }
@@ -36,24 +35,6 @@ function ChapterThree() {
   );
 }
 
-const Drawer = createDrawerNavigator<RootDrawerParamList>();
-
-const Stack = createNativeStackNavigator();
-
-function ChapterOneNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="ChapterOneHome"
-        component={ChapterOne}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="SectionOne" component={SectionOne} />
-      <Stack.Screen name="SectionTwo" component={SectionTwo} />
-    </Stack.Navigator>
-  );
-}
-
 function SectionOne() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -70,7 +51,11 @@ function SectionTwo() {
   );
 }
 
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
+
 export default function HopeHealingGuide() {
+  const [isChapterOneOpen, setIsChapterOneOpen] = useState(false);
+
   return (
     <Drawer.Navigator
       initialRouteName="ChapterOne"
@@ -82,19 +67,39 @@ export default function HopeHealingGuide() {
     >
       <Drawer.Screen
         name="ChapterOne"
+        options={{
+          drawerLabel: () => (
+            <TouchableOpacity
+              onPress={() => setIsChapterOneOpen(!isChapterOneOpen)}
+            >
+              <Text style={styles.drawerLabelText}>Chapter 1</Text>
+            </TouchableOpacity>
+          ),
+        }}
         component={ChapterOne}
-        options={{ drawerLabel: 'Chapter 1' }}
       />
-      <Drawer.Screen
-        name="SectionOne"
-        component={SectionOne}
-        options={{ drawerLabel: 'Subsection 1' }}
-      />
-      <Drawer.Screen
-        name="SectionTwo"
-        component={SectionTwo}
-        options={{ drawerLabel: 'Subsection 2' }}
-      />
+      {isChapterOneOpen && (
+        <>
+          <Drawer.Screen
+            name="SectionOne"
+            component={SectionOne}
+            options={{
+              drawerLabel: () => (
+                <Text style={styles.subsectionLabelText}>Subsection 1</Text>
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="SectionTwo"
+            component={SectionTwo}
+            options={{
+              drawerLabel: () => (
+                <Text style={styles.subsectionLabelText}>Subsection 2</Text>
+              ),
+            }}
+          />
+        </>
+      )}
       <Drawer.Screen
         name="ChapterTwo"
         component={ChapterTwo}
@@ -108,3 +113,13 @@ export default function HopeHealingGuide() {
     </Drawer.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  drawerLabelText: {
+    fontWeight: 'bold',
+  },
+  subsectionLabelText: {
+    color: '#666',
+    paddingLeft: 30,
+  },
+});
