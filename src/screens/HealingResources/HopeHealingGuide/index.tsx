@@ -58,7 +58,7 @@ export default function HopeHealingGuide() {
 
   return (
     <Drawer.Navigator
-      initialRouteName="ChapterOne"
+      initialRouteName="SectionOne"
       screenOptions={{
         drawerType: 'front',
         overlayColor: 'transparent',
@@ -76,18 +76,18 @@ export default function HopeHealingGuide() {
             </TouchableOpacity>
           ),
         }}
-        component={ChapterOne}
+        component={SectionOne}
       />
       {isChapterOneOpen && (
         <>
           <Drawer.Screen
             name="SectionOne"
-            component={SectionOne}
             options={{
               drawerLabel: () => (
                 <Text style={styles.subsectionLabelText}>Subsection 1</Text>
               ),
             }}
+            component={SectionOne}
           />
           <Drawer.Screen
             name="SectionTwo"
