@@ -7,3 +7,11 @@ export const getVideoLink = (language: string, videoName: string): string => {
 
   return data.publicUrl;
 };
+
+export const gethfhHTML = (chapter: string, subhead: string): string => {
+  let { data } = supabase.storage
+    .from('HFH_guide')
+    .getPublicUrl(`${chapter}/${subhead}.html`);
+
+  return data.publicUrl;
+};
