@@ -19,6 +19,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 25,
   },
   captionButtons: {
+    display: 'flex',
+    gap: 10,
+    flexDirection: 'row',
     borderRadius: 10,
     width: 180,
     height: 50,
@@ -30,5 +33,9 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
+  },
+  arrows: {
+    width: 20,
+    height: 20,
   },
 });

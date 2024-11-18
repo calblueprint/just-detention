@@ -3,7 +3,7 @@ import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { LegalScreenProps } from '@/navigation/types';
 import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
-import { getPosterLink } from '@/supabase/queries/storageQueries 2';
+import { getPosterLink } from '@/supabase/queries/storageQueries';
 import { VideoResource } from '@/types/types';
 import { styles } from './styles';
 

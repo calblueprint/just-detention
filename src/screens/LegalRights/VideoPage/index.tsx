@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import Video from 'react-native-video';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Video } from 'expo-av';
+import leftArrow from '@/assets/images/left-arrow.png';
+import rightArrow from '@/assets/images/right-arrow.png';
 import { LegalScreenProps } from '@/navigation/types';
 import { getVideoLink } from '@/supabase/queries/storageQueries';
 import { styles } from './styles';
@@ -10,6 +12,8 @@ export default function VideoPage({
   route,
 }: LegalScreenProps<'VideoPage'>) {
   const { currentModules, pageNumber, language } = route.params;
+
+  // var for array of all the pages for the current language
   const [preaData, setPreaData] = useState([
     {
       id: 'string',
@@ -23,6 +27,7 @@ export default function VideoPage({
     },
   ]);
   const [index, setIndex] = useState(10); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
+  // const [language, setLanguage] = useState('english'); // which language associated to array of pages
 
   const videoLinkRef = useRef(
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
@@ -30,9 +35,6 @@ export default function VideoPage({
 
   //
   const [renderTrigger, setRenderTrigger] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
 
   const nextPage = () => {
     setIndex(prevIndex => Math.min(prevIndex + 1, preaData.length - 1)); // next index in array of pages
@@ -57,37 +59,27 @@ export default function VideoPage({
     fetchVideoLink();
   }, [index]); // run useEffect every time value of index changes
 
-  const onLoad = (data: any) => {
-    setDuration(data.duration);
-  };
-
-  const onProgress = (data: any) => {
-    setCurrentTime(data.currentTime);
-  };
-
   return (
     <ScrollView style={styles.container}>
       <Video
-        key={renderTrigger}
+        key={renderTrigger} // changing the key forces re-mount and playback reset
         source={{ uri: videoLinkRef.current }}
         rate={1.0}
         volume={1.0}
-        paused={paused}
-        muted={false}
-        resizeMode="contain"
-        onLoad={onLoad}
-        onProgress={onProgress}
-        onEnd={() => console.log('Video finished')}
-        repeat
+        isMuted={false}
+        shouldPlay
+        isLooping
         style={styles.video}
       />
 
       <View style={styles.buttonContainer}>
         <Pressable style={[styles.captionButtons]} onPress={prevPage}>
-          <Text style={styles.buttonText}>{'<   Previous Section'}</Text>
+          <Image style={[styles.arrows]} source={leftArrow} />
+          <Text style={styles.buttonText}>{'Previous Section'}</Text>
         </Pressable>
         <Pressable style={[styles.captionButtons]} onPress={nextPage}>
-          <Text style={styles.buttonText}>{'Next Section   >'}</Text>
+          <Text style={styles.buttonText}>{'Next Section'}</Text>
+          <Image style={[styles.arrows]} source={rightArrow} />
         </Pressable>
       </View>
     </ScrollView>

@@ -7,3 +7,14 @@ export const getVideoLink = (language: string, videoName: string): string => {
 
   return data.publicUrl;
 };
+
+export const getPosterLink = (
+  language: string,
+  videoName: string,
+): string | null => {
+  let { data } = supabase.storage
+    .from('PREA_videos')
+    .getPublicUrl(`${language}/${videoName}.png`);
+
+  return data.publicUrl;
+};
