@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HealingStackParams } from 'src/navigation/types';
 import HealingResources from '@/screens/HealingResources';
 import HealingCatalogue from '@/screens/HealingResources/HealingCatalogue';
 import HopeHealingGuide from '@/screens/HealingResources/HopeHealingGuide/';
-import { HealingStackParams } from '../types';
 
 const HealingStack = createNativeStackNavigator<HealingStackParams>();
 
