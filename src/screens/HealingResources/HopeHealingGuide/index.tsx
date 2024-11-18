@@ -169,13 +169,3 @@ export default function HopeHealingGuide() {
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerLabelText: {
-    fontWeight: 'bold',
-  },
-  subsectionLabelText: {
-    color: '#666',
-    paddingLeft: 30,
-  },
-});
