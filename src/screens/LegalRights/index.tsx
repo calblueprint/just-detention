@@ -3,6 +3,7 @@ import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { LegalScreenProps } from '@/navigation/types';
 import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
+import { getPosterLink } from '@/supabase/queries/storageQueries 2';
 import { VideoResource } from '@/types/types';
 import { styles } from './styles';
 
@@ -103,8 +104,23 @@ export default function LegalRights({
                 )
               }
             >
-              <Image style={styles.modulePoster} source={placeholderPoster} />
-              <Text style={styles.moduleTitle}>{section.video_id}</Text>
+              <Image
+                style={styles.modulePoster}
+                source={
+                  getPosterLink(
+                    section['spanish'] ? 'spanish' : 'english',
+                    section['video_id'],
+                  )
+                    ? {
+                        uri: getPosterLink(
+                          section['spanish'] ? 'spanish' : 'english',
+                          section['video_id'],
+                        )!,
+                      }
+                    : placeholderPoster
+                }
+              />
+              <Text style={styles.moduleTitle}>{section['video_id']}</Text>
             </Pressable>
           ))}
         </View>
