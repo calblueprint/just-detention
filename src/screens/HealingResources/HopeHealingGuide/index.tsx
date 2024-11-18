@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import styles from './styles';
 
 type RootDrawerParamList = {
   ChapterOne: undefined;
@@ -13,7 +14,7 @@ type RootDrawerParamList = {
 
 function ChapterOne() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Content of Chapter 1</Text>
     </View>
   );
@@ -21,7 +22,7 @@ function ChapterOne() {
 
 function ChapterTwo() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Chapter 2</Text>
     </View>
   );
@@ -29,7 +30,7 @@ function ChapterTwo() {
 
 function ChapterThree() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Chapter 3</Text>
     </View>
   );
@@ -37,7 +38,7 @@ function ChapterThree() {
 
 function SectionOne() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Subsection 1 of Chapter 1</Text>
     </View>
   );
@@ -45,7 +46,7 @@ function SectionOne() {
 
 function SectionTwo() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Subsection 2 of Chapter 1</Text>
     </View>
   );
@@ -113,13 +114,3 @@ export default function HopeHealingGuide() {
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerLabelText: {
-    fontWeight: 'bold',
-  },
-  subsectionLabelText: {
-    color: '#666',
-    paddingLeft: 30,
-  },
-});
