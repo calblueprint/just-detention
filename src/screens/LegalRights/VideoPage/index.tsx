@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-// import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { Video } from 'expo-av';
+import leftArrow from '@/assets/images/left-arrow.png';
+import rightArrow from '@/assets/images/right-arrow.png';
 import { LegalScreenProps } from '@/navigation/types';
 import { getVideoLink } from '@/supabase/queries/storageQueries';
 import { styles } from './styles';
@@ -11,13 +12,6 @@ export default function VideoPage({
   route,
 }: LegalScreenProps<'VideoPage'>) {
   const { currentModules, pageNumber, language } = route.params;
-
-  // const [currentTime, setCurrentTime] = useState(0);
-  // const [duration, setDuration] = useState(0);
-  // const [isFullScreen, setIsFullScreen] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [paused, setPaused] = useState(false);
-  // const [playerState, setPlayerState] = useState(PLAYER_STATES.PLAYING);
 
   // var for array of all the pages for the current language
   const [preaData, setPreaData] = useState([
@@ -77,33 +71,15 @@ export default function VideoPage({
         isLooping
         style={styles.video}
       />
-      {/* <MediaControls
-        isFullScreen={false}
-        duration={duration}
-        isLoading={isLoading}
-        mainColor="orange"
-        containerStyle={styles.videoContainer}
-        // onFullScreen={noop}
-        onPaused={() => console.log('paused')}
-        onReplay={() => console.log('replay')}
-        onSeek={() => setPlayerState(PLAYER_STATES.PLAYING)}
-        onSeeking={() => console.log('seeking')}
-        playerState={playerState}
-        progress={currentTime}
-      >
-        <MediaControls.Toolbar>
-          <View>
-            <Text>I'm a custom toolbar </Text>
-          </View>
-        </MediaControls.Toolbar>
-      </MediaControls> */}
 
       <View style={styles.buttonContainer}>
         <Pressable style={[styles.captionButtons]} onPress={prevPage}>
-          <Text style={styles.buttonText}>{'<   Previous Section'}</Text>
+          <Image style={[styles.arrows]} source={leftArrow} />
+          <Text style={styles.buttonText}>{'Previous Section'}</Text>
         </Pressable>
         <Pressable style={[styles.captionButtons]} onPress={nextPage}>
-          <Text style={styles.buttonText}>{'Next Section   >'}</Text>
+          <Text style={styles.buttonText}>{'Next Section'}</Text>
+          <Image style={[styles.arrows]} source={rightArrow} />
         </Pressable>
       </View>
     </ScrollView>

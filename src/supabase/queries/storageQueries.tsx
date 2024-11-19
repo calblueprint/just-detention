@@ -8,7 +8,13 @@ export const getVideoLink = (language: string, videoName: string): string => {
   return data.publicUrl;
 };
 
-export const gethfhHTML = (link: string): string => {
-  let { data } = supabase.storage.from('HFH_guide').getPublicUrl(link);
+export const getPosterLink = (
+  language: string,
+  videoName: string,
+): string | null => {
+  let { data } = supabase.storage
+    .from('PREA_videos')
+    .getPublicUrl(`${language}/${videoName}.png`);
+
   return data.publicUrl;
 };
