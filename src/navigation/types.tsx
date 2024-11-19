@@ -2,6 +2,8 @@ import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bott
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { VideoResource } from '@/types/types';
 
+export type subheadingId = string;
+
 export type LegalStackParams = {
   LegalRights: undefined;
   VideoPage: {
@@ -13,7 +15,9 @@ export type LegalStackParams = {
 
 export type HealingStackParams = {
   HealingResources: undefined;
-  HopeForHealingGuide: undefined;
+  HopeForHealingGuide: {
+    id: subheadingId;
+  };
   HealingCatalogue: undefined;
 };
 

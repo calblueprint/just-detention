@@ -9,7 +9,11 @@ export default function HealingResources({
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.pagebutton}
-        onPress={() => navigation.navigate('HopeForHealingGuide')}
+        onPress={() =>
+          navigation.navigate('HopeForHealingGuide', {
+            id: '7012e24a-894e-4972-9dcc-612666bff21e',
+          })
+        }
       >
         <Text style={styles.buttonText}>Hope for Healing Guide</Text>
       </TouchableOpacity>

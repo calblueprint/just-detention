@@ -1,5 +1,7 @@
+import { subheadingId } from '@/navigation/types';
 import { HealingResource, Resource, VideoResource } from '@/types/types';
 import supabase from '../createClient';
+import { gethfhHTML } from './storageQueries';
 
 export const getHealingResourceData = async (): Promise<HealingResource[]> => {
   const { data, error } = await supabase.from('healing_resources').select('*');
@@ -38,4 +40,30 @@ export const getPreaByLanguage = async (
   }
   data.sort((a, b) => a.page_number - b.page_number); // sort the array based on pages' page_number yur
   return data;
+};
+
+export const getSubheadingById = async (id: subheadingId): Promise<string> => {
+  const { data, error } = await supabase
+    .from('hfh_subheading')
+    .select()
+    .eq('id', id);
+  if (error) {
+    throw error;
+  }
+  const htmlLink = data[0].html_link;
+  return gethfhHTML(htmlLink);
+};
+
+export const getNextSubheadingId = async (
+  id: subheadingId,
+): Promise<string> => {
+  const { data, error } = await supabase
+    .from('hfh_subheading')
+    .select()
+    .eq('id', id);
+  if (error) {
+    throw error;
+  }
+  const nextId = data[0].next;
+  return nextId;
 };
