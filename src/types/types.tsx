@@ -1,6 +1,6 @@
 export interface Resource {
   summary: string;
-  [key: string]: any;
+  [key: string]: string;
 }
 
 export type HealingResource = {
