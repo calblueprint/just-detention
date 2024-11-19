@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import styles from './styles';
 
 type RootDrawerParamList = {
   Welcome: undefined;
@@ -23,7 +24,7 @@ function Welcome() {
 
 function ChapterTwo() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Chapter 2</Text>
     </View>
   );
@@ -31,7 +32,7 @@ function ChapterTwo() {
 
 function ChapterThree() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.drawerItem}>
       <Text>Chapter 3</Text>
     </View>
   );
@@ -142,12 +143,12 @@ export default function HopeHealingGuide() {
         <>
           <Drawer.Screen
             name="SectionOne"
+            component={SectionOne}
             options={{
               drawerLabel: () => (
                 <Text style={styles.subsectionLabelText}>Section One</Text>
               ),
             }}
-            component={SectionOne}
           />
           <Drawer.Screen
             name="SectionTwo"
@@ -168,13 +169,3 @@ export default function HopeHealingGuide() {
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerLabelText: {
-    fontWeight: 'bold',
-  },
-  subsectionLabelText: {
-    color: '#666',
-    paddingLeft: 30,
-  },
-});
