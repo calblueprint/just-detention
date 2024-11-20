@@ -5,6 +5,8 @@ import { getSeekHelpData } from '@/supabase/queries/generalQueries';
 import { Resource as ResourceType } from '@/types/types';
 import { styles } from './styles';
 
+const jurisdiction = ['California', 'National'];
+
 export default function ResourceList() {
   const filters = [
     'General Resources',
@@ -55,6 +57,13 @@ export default function ResourceList() {
   return (
     <View style={styles.container}>
       <View style={styles.leftPanel}>
+        <View style={styles.selectTextContainer}>
+          <Text style={styles.selectText}>Select Resources Level:</Text>
+        </View>
+        <View style={styles.selectJurisdictionContainer}>
+          <View style={styles.checkButton}></View>
+          <View style={styles.checkButton}></View>
+        </View>
         <View style={styles.selectTextContainer}>
           <Text style={styles.selectText}>Select Resources Type:</Text>
         </View>

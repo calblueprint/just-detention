@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   leftPanel: {
     flexDirection: 'column',
-    width: '20%',
+    width: '23%',
     backgroundColor: '#f7f9fc',
     paddingHorizontal: 10,
   },
@@ -57,6 +57,17 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#444',
   },
+  selectJurisdictionContainer: {
+    backgroundColor: '#FFF',
+    marginHorizontal: 18,
+    borderRadius: 10,
+    padding: 22,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    shadowOffset: { width: -2, height: 3 },
+    rowGap: 32,
+  },
   selectTextContainer: {
     marginVertical: 10,
     marginHorizontal: 15,
@@ -68,5 +79,12 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 21,
     letterSpacing: -0.154,
+  },
+  checkButton: {
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#CBD2DF',
+    width: 20,
+    height: 20,
   },
 });
