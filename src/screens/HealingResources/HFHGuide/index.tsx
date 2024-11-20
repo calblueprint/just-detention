@@ -62,7 +62,6 @@ export default function HFHGuide({
           <Text>Loading content...</Text>
         )}
       </ScrollView>
-      <View style={styles.nextButtonContainer}></View>
     </View>
   );
 }
