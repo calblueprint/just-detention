@@ -23,4 +23,7 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 20,
   },
+  Text: {
+    fontSize: 25,
+  },
 });
