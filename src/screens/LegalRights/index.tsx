@@ -89,7 +89,7 @@ export default function LegalRights({
             }
           }}
         >
-          <Text style={styles.buttonText}>Spanish CC</Text>
+          <Text style={styles.buttonText}>Español CC</Text>
         </Pressable>
       </View>
       <ScrollView>

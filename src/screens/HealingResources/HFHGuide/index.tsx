@@ -62,20 +62,7 @@ export default function HFHGuide({
           <Text>Loading content...</Text>
         )}
       </ScrollView>
-      <View style={styles.nextButtonContainer}>
-        {nextId == null ? (
-          <View />
-        ) : (
-          <Pressable
-            style={styles.nextButton}
-            onPress={() =>
-              navigation.push('HopeForHealingGuide', { id: nextId })
-            }
-          >
-            <Text>Next</Text>
-          </Pressable>
-        )}
-      </View>
+      <View style={styles.nextButtonContainer}></View>
     </View>
   );
 }

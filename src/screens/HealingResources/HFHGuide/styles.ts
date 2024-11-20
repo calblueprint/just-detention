@@ -19,10 +19,4 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingRight: 50,
   },
-  nextButton: {
-    height: '50%',
-    width: '20%',
-    borderColor: 'black',
-    borderWidth: 1,
-  },
 });
