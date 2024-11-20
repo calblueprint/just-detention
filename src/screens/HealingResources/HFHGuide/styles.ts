@@ -12,11 +12,4 @@ export default StyleSheet.create({
     fontFamily: 'Roboto Serif',
     color: '#444',
   },
-  nextButtonContainer: {
-    height: '10%',
-    display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    paddingRight: 50,
-  },
 });
