@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home/';
+import PREAgrey from '../assets/images/prea-grey.svg';
 import HealingResourcesNavigator from './stacks/HealingResourcesNavigator';
 import LegalRightsNavigator from './stacks/LegalRightsNavigator';
 import SeekHelpNavigator from './stacks/SeekHelpNavigator';
@@ -30,6 +31,7 @@ export default function NavigationBar() {
         component={HealingResourcesNavigator}
         options={{
           tabBarLabel: 'Healing Resources',
+          tabBarIcon: () => <PREAgrey />,
         }}
       />
       <Tab.Screen
