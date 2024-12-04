@@ -21,6 +21,7 @@ export interface SeekHelpProps {
   tags: string;
 }
 export type VideoResource = {
+  title: string;
   id: string;
   is_short_answer: boolean;
   page_number: number;

@@ -15,6 +15,7 @@ export default function LegalRights({
   // english pages var mhm
   const [englishModules, setEnglishModules] = useState<VideoResource[]>([
     {
+      title: 'string',
       id: 'string',
       is_short_answer: true,
       page_number: 0,
@@ -29,6 +30,7 @@ export default function LegalRights({
   // spanish pages var mhm
   const [spanishModules, setSpanishModules] = useState<VideoResource[]>([
     {
+      title: 'string',
       id: 'string',
       is_short_answer: true,
       page_number: 0,
@@ -120,7 +122,7 @@ export default function LegalRights({
                     : placeholderPoster
                 }
               />
-              <Text style={styles.moduleTitle}>{section['video_id']}</Text>
+              <Text style={styles.moduleTitle}>{section['title']}</Text>
             </Pressable>
           ))}
         </View>
