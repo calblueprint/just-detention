@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, Image} from 'react-native';
-import { styles } from './styles';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import logo from 'src/assets/images/JDI_LOGO.png';
+import { styles } from './styles';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
