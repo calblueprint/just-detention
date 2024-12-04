@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import leftArrow from '@/assets/images/left-arrow.png';
 import rightArrow from '@/assets/images/right-arrow.png';
@@ -27,8 +27,8 @@ export default function VideoPage({
       video_id: 'Section Title 1',
     },
   ]);
-  const [index, setIndex] = useState(0); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
-  // const [language, setLanguage] = useState('english'); // which language associated to array of pages
+  const [index, setIndex] = useState(Infinity); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
+  const [title, setTitle] = useState('Title');
 
   const videoLinkRef = useRef(
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
@@ -59,6 +59,12 @@ export default function VideoPage({
 
     fetchVideoLink();
     player.replace(videoLinkRef.current);
+
+    try {
+      setTitle(preaData[index].title);
+    } catch (error) {
+      setTitle('Title');
+    }
   }, [index]); // run useEffect every time value of index changes
 
   return (
@@ -70,7 +76,7 @@ export default function VideoPage({
 
       <View style={styles.videoAndTitle}>
         <View>
-          <Text style={styles.title}>{preaData[index].title}</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
 
         <VideoView
