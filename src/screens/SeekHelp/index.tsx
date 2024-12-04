@@ -63,7 +63,9 @@ export default function ResourceList() {
           <View style={styles.selectJurisdictionContainer}>
             {jurisdiction.map(level => (
               <View key={level} style={styles.checkButtonContainer}>
-                <TouchableOpacity style={styles.checkButton}></TouchableOpacity>
+                <TouchableOpacity style={styles.checkButton}>
+                  {/* <Check /> */}
+                </TouchableOpacity>
                 <Text style={styles.buttonText}>{level}</Text>
               </View>
             ))}
