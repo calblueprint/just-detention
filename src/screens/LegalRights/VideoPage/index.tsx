@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
-import { Video } from 'expo-av';
+import { useVideoPlayer, VideoView } from 'expo-video';
 import leftArrow from '@/assets/images/left-arrow.png';
 import rightArrow from '@/assets/images/right-arrow.png';
 import { LegalScreenProps } from '@/navigation/types';
@@ -33,8 +33,9 @@ export default function VideoPage({
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
   );
 
-  //
-  const [renderTrigger, setRenderTrigger] = useState(0);
+  const player = useVideoPlayer(videoLinkRef.current, player => {
+    player.play();
+  });
 
   const nextPage = () => {
     setIndex(prevIndex => Math.min(prevIndex + 1, preaData.length - 1)); // next index in array of pages
@@ -53,23 +54,19 @@ export default function VideoPage({
   useEffect(() => {
     const fetchVideoLink = async () => {
       videoLinkRef.current = getVideoLink(language, preaData[index].video_id); // Update the ref with the new video link
-      setRenderTrigger(prev => prev + 1); // Trigger a re-render to apply the new link
     };
 
     fetchVideoLink();
+    player.replace(videoLinkRef.current);
   }, [index]); // run useEffect every time value of index changes
 
   return (
     <ScrollView style={styles.container}>
-      <Video
-        key={renderTrigger} // changing the key forces re-mount and playback reset
-        source={{ uri: videoLinkRef.current }}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        shouldPlay
-        isLooping
+      <VideoView
         style={styles.video}
+        player={player}
+        allowsFullscreen
+        allowsPictureInPicture
       />
 
       <View style={styles.buttonContainer}>

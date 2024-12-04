@@ -24,6 +24,6 @@
     "web": {
       "favicon": "./assets/bp-favicon.png"
     },
-    "plugins": ["expo-font"]
+    "plugins": ["expo-font", "expo-video"]
   }
 }
