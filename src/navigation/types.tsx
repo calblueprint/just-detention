@@ -1,4 +1,4 @@
-import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { VideoResource } from '@/types/types';
 
@@ -43,4 +43,4 @@ export type SeekHelpScreenProps<T extends keyof SeekHelpStackParams> =
   NativeStackScreenProps<SeekHelpStackParams, T>;
 
 export type BottomTabScreenProps<T extends keyof BottomTabParams> =
-  MaterialBottomTabNavigationProp<BottomTabParams, T>;
+  BottomTabNavigationProp<BottomTabParams, T>;
