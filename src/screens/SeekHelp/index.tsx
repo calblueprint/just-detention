@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import Check from 'src/assets/images/check_small.svg';
 import ResourceT from '@/components/Resource/Resource';
 import { getSeekHelpData } from '@/supabase/queries/generalQueries';
 import { Resource as ResourceType } from '@/types/types';
@@ -57,37 +58,43 @@ export default function ResourceList() {
   return (
     <View style={styles.container}>
       <View style={styles.leftPanel}>
-        <View style={styles.selectTextContainer}>
-          <Text style={styles.selectText}>Select Resources Level:</Text>
+        <View style={styles.selectContainer}>
+          <Text style={styles.selectText}>Select Resources Level</Text>
+          <View style={styles.selectJurisdictionContainer}>
+            {jurisdiction.map(level => (
+              <View key={level} style={styles.checkButtonContainer}>
+                <TouchableOpacity style={styles.checkButton}></TouchableOpacity>
+                <Text style={styles.buttonText}>{level}</Text>
+              </View>
+            ))}
+          </View>
         </View>
-        <View style={styles.selectJurisdictionContainer}>
-          <View style={styles.checkButton}></View>
-          <View style={styles.checkButton}></View>
-        </View>
-        <View style={styles.selectTextContainer}>
-          <Text style={styles.selectText}>Select Resources Type:</Text>
-        </View>
-        {filters.map((filter, index) => (
-          <TouchableOpacity
-            key={index}
-            style={
-              selectedFilter === filter
-                ? styles.selectedFilterButton
-                : styles.filterButton
-            }
-            onPress={() => applyFilter(filter)}
-          >
-            <Text
+
+        <View style={styles.selectContainer}>
+          <Text style={styles.selectText}>Select Resources Type</Text>
+
+          {filters.map((filter, index) => (
+            <TouchableOpacity
+              key={index}
               style={
                 selectedFilter === filter
-                  ? styles.selectedButtonText
-                  : styles.buttonText
+                  ? styles.selectedFilterButton
+                  : styles.filterButton
               }
+              onPress={() => applyFilter(filter)}
             >
-              {filter}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <Text
+                style={
+                  selectedFilter === filter
+                    ? styles.selectedButtonText
+                    : styles.buttonText
+                }
+              >
+                {filter}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
 
       <ScrollView style={styles.rightPanel}>
