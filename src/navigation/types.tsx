@@ -1,4 +1,3 @@
-// prettier-ignore
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { VideoResource } from '@/types/types';
