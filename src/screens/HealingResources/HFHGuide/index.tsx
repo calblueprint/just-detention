@@ -3,6 +3,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import { useFonts } from 'expo-font';
 import { HealingScreenProps } from '@/navigation/types';
+import { MixedStyleRecord } from 'react-native-render-html';
 import {
   getNextSubheadingId,
   getSubheadingById,
@@ -80,11 +81,11 @@ export default function HFHGuide({
   );
 }
 
-const htmlStyles = {
+const htmlStyles: MixedStyleRecord = {
   p: {
     fontFamily: 'Roboto Serif',
     fontSize: 20,
-    fontWeight: '200',
+    fontWeight: '200', // Use a valid string value as per the error
     color: '#444',
     lineHeight: 30,
     marginVertical: 6,
@@ -92,7 +93,6 @@ const htmlStyles = {
   },
   h3: {
     fontFamily: 'Roboto Serif Bold',
-    // fontWeight: 'bold',
     fontSize: 30,
     color: '#444',
     lineHeight: 30,
