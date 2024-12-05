@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import Check from 'src/assets/images/check_small.svg';
+// import Check from 'src/assets/images/check_small.svg';
 import ResourceT from '@/components/Resource/Resource';
 import { getSeekHelpData } from '@/supabase/queries/generalQueries';
 import { Resource as ResourceType } from '@/types/types';
