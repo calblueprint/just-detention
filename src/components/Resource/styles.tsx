@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   orgName: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#444444',
   },
   summaryPreview: {
     marginTop: 10,
@@ -46,9 +47,10 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 18,
     marginRight: 5,
+    color: '#4C4C4C',
   },
   info: {
     fontSize: 18,
-    color: '#333',
+    color: '#4C4C4C',
   },
 });
