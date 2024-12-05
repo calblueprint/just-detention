@@ -24,7 +24,7 @@ export default function ResourceT({
             <Text style={styles.orgName}>{org_name}</Text>
             {!expanded && (
               <Text style={styles.summaryPreview}>
-                {summary.slice(0, 80)}...
+                {summary.slice(0, 70)}...
               </Text>
             )}
           </TouchableOpacity>
