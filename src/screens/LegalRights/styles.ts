@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: 20,
+    flex: 3,
   },
   preaModule: {
     paddingTop: 15,

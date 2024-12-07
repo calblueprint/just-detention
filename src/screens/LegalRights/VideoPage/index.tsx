@@ -62,7 +62,7 @@ export default function VideoPage({
 
     try {
       setTitle(preaData[index].title);
-    } catch (error) {
+    } catch {
       setTitle('Title');
     }
   }, [index]); // run useEffect every time value of index changes
