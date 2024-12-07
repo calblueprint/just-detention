@@ -102,20 +102,23 @@ export default function ResourceList() {
           <Text style={styles.selectText}>Select Resources Level</Text>
           <View style={styles.selectJurisdictionContainer}>
             {jurisdiction.map(level => (
-              <View key={level} style={styles.checkButtonContainer}>
-                <TouchableOpacity
+              <TouchableOpacity
+                key={level}
+                style={styles.checkButtonContainer}
+                onPress={() => toggleSelection(level)}
+              >
+                <View
                   style={[
                     styles.checkButton,
                     selectedJurisdiction.includes(level)
                       ? styles.selectedCheckButton
                       : null,
                   ]}
-                  onPress={() => toggleSelection(level)}
                 >
                   {selectedJurisdiction.includes(level) && <Check />}
-                </TouchableOpacity>
+                </View>
                 <Text style={styles.buttonText}>{level}</Text>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
