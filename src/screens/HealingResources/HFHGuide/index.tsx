@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import RenderHTML, { MixedStyleRecord } from 'react-native-render-html';
 import { useFonts } from 'expo-font';
 import { HealingScreenProps } from '@/navigation/types';
