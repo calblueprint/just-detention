@@ -24,7 +24,7 @@ export default function ResourceT({
             <Text style={styles.orgName}>{org_name}</Text>
             {!expanded && (
               <Text style={styles.summaryPreview}>
-                {summary.slice(0, 60)}...
+                {summary.slice(0, 80)}...
               </Text>
             )}
           </TouchableOpacity>
@@ -40,19 +40,20 @@ export default function ResourceT({
           >
             <Text style={styles.summary}>{summary}</Text>
 
-            <View style={styles.infoContainer}>
-              <Text style={styles.label}>Address:</Text>
-              <Text style={styles.info}>{address}</Text>
-            </View>
+            <View style={styles.fieldsContainer}>
+              <View style={styles.infoContainer}>
+                <Text style={styles.label}>Address:</Text>
+                <Text style={styles.info}>{address}</Text>
+              </View>
+              <View style={styles.infoContainer}>
+                <Text style={styles.label}>Office:</Text>
+                <Text style={styles.info}>{phone_number}</Text>
+              </View>
 
-            <View style={styles.infoContainer}>
-              <Text style={styles.label}>Office:</Text>
-              <Text style={styles.info}>{phone_number}</Text>
-            </View>
-
-            <View style={styles.infoContainer}>
-              <Text style={styles.label}>Office Hours:</Text>
-              <Text style={styles.info}>{office_hours}</Text>
+              <View style={styles.infoContainer}>
+                <Text style={styles.label}>Office Hours:</Text>
+                <Text style={styles.info}>{office_hours}</Text>
+              </View>
             </View>
           </TouchableOpacity>
         )}

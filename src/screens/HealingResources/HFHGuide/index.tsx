@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import RenderHTML from 'react-native-render-html';
+import { ScrollView, Text, View } from 'react-native';
+import RenderHTML, { MixedStyleRecord } from 'react-native-render-html';
 import { useFonts } from 'expo-font';
 import { HealingScreenProps } from '@/navigation/types';
-import { MixedStyleRecord } from 'react-native-render-html';
 import {
   getNextSubheadingId,
   getSubheadingById,

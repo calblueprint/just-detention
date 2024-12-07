@@ -4,46 +4,53 @@ export const styles = StyleSheet.create({
   resourceCard: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 15,
-    margin: 20,
+    paddingHorizontal: 30,
+    paddingVertical: 25,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 3 },
+    rowGap: 10,
   },
   headerContent: {
     flexDirection: 'column',
     width: '95%',
   },
   orgName: {
-    fontSize: 18,
-    paddingTop: 5,
+    fontSize: 24,
     fontWeight: 'bold',
+    color: '#444444',
   },
   summaryPreview: {
-    fontSize: 14,
-    color: '#666',
-    paddingBottom: 5,
+    marginTop: 10,
+    fontSize: 18,
+    color: '#9B9B9B',
   },
   expandedContent: {
-    marginTop: 10,
+    rowGap: 15,
   },
   summary: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 10,
+    fontSize: 18,
+    color: '#4C4C4C',
   },
+  fieldsContainer: {
+    flexDirection: 'column',
+    rowGap: 5,
+  },
+
   infoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
   },
+
   label: {
     fontWeight: '600',
+    fontSize: 18,
     marginRight: 5,
+    color: '#4C4C4C',
   },
   info: {
-    fontSize: 14,
-    color: '#333',
+    fontSize: 18,
+    color: '#4C4C4C',
   },
 });
