@@ -1,20 +1,10 @@
 import { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
-import placeholderPoster from '@/assets/images/placeholder.png';
+import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
+import LegalRightsItem from '@/components/LegalRightsItem';
 import { LegalScreenProps } from '@/navigation/types';
 import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
-import { getPosterLink } from '@/supabase/queries/storageQueries';
 import { VideoResource } from '@/types/types';
 import { styles } from './styles';
-
-// import { FlatList } from 'react-native-gesture-handler';
 
 export default function LegalRights({
   navigation,
@@ -72,36 +62,6 @@ export default function LegalRights({
     });
   };
 
-  const Item = (module: VideoResource) => (
-    <Pressable
-      style={styles.preaModule}
-      onPress={() =>
-        goToVideo(
-          module['page_number'],
-          module['spanish'] ? 'spanish' : 'english',
-        )
-      }
-    >
-      <Image
-        style={styles.modulePoster}
-        source={
-          getPosterLink(
-            module['spanish'] ? 'spanish' : 'english',
-            module['video_id'],
-          )
-            ? {
-                uri: getPosterLink(
-                  module['spanish'] ? 'spanish' : 'english',
-                  module['video_id'],
-                )!,
-              }
-            : placeholderPoster
-        }
-      />
-      <Text style={styles.moduleTitle}>{module['title']}</Text>
-    </Pressable>
-  );
-
   return (
     <>
       <Text style={styles.title}>Legal Rights</Text>
@@ -136,39 +96,12 @@ export default function LegalRights({
 
       <ScrollView>
         <View style={styles.preaModulesView}>
-          {/* <FlatList
-            data={currentModules}
-            renderItem={({item}) => <Item page_number={item.page_number} spanish={item.spanish} video_id={item.video_id} title={item.title} id={item.id} is_short_answer={item.is_short_answer} parent_id={item.parent_id} short_answer={item.short_answer} survey={item.survey} />}
-            numColumns={3}
-          /> */}
-          {currentModules.map((section, index) => (
-            <Pressable
-              style={styles.preaModule}
-              onPress={() =>
-                goToVideo(
-                  section['page_number'],
-                  section['spanish'] ? 'spanish' : 'english',
-                )
-              }
-            >
-              <Image
-                style={styles.modulePoster}
-                source={
-                  getPosterLink(
-                    section['spanish'] ? 'spanish' : 'english',
-                    section['video_id'],
-                  )
-                    ? {
-                        uri: getPosterLink(
-                          section['spanish'] ? 'spanish' : 'english',
-                          section['video_id'],
-                        )!,
-                      }
-                    : placeholderPoster
-                }
-              />
-              <Text style={styles.moduleTitle}>{section['title']}</Text>
-            </Pressable>
+          {currentModules.map(section => (
+            <LegalRightsItem
+              key={section.id}
+              section={section}
+              onPress={goToVideo}
+            />
           ))}
         </View>
       </ScrollView>
