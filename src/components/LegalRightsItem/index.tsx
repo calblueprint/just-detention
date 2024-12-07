@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, Text } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import placeholderPoster from '@/assets/images/placeholder.png';
 import { getPosterLink } from '@/supabase/queries/storageQueries';
 import { VideoSectionItemProps } from '@/types/types';
@@ -24,7 +24,11 @@ export default function LegalRightsItem({
             : placeholderPoster
         }
       />
-      <Text style={styles.moduleTitle}>{section.title}</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.moduleTitle} numberOfLines={2}>
+          {section.title}
+        </Text>
+      </View>
     </Pressable>
   );
 }

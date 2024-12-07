@@ -95,15 +95,19 @@ export default function LegalRights({
       </View>
 
       <ScrollView>
-        <View style={styles.preaModulesView}>
-          {currentModules.map(section => (
-            <LegalRightsItem
-              key={section.id}
-              section={section}
-              onPress={goToVideo}
-            />
-          ))}
-        </View>
+        <FlatList
+          style={styles.preaGrid}
+          data={currentModules}
+          renderItem={({ item }) => (
+            <LegalRightsItem key={item.id} section={item} onPress={goToVideo} />
+          )}
+          numColumns={3}
+          columnWrapperStyle={{
+            justifyContent: 'space-between',
+            gap: 40,
+            marginBottom: 10,
+          }}
+        />
       </ScrollView>
     </>
   );
