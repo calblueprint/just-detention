@@ -9,8 +9,17 @@ const LegalStack = createNativeStackNavigator<LegalStackParams>();
 export default function LegalRightsNavigator() {
   return (
     <LegalStack.Navigator>
-      <LegalStack.Screen name="LegalRights" component={LegalRights} />
-      <LegalStack.Screen name="VideoPage" component={VideoPage} />
+      <LegalStack.Screen 
+      name="LegalRights" 
+      component={LegalRights}
+      
+      />
+      
+      <LegalStack.Screen 
+      name="VideoPage" 
+      component={VideoPage} 
+      
+      />
     </LegalStack.Navigator>
   );
 }

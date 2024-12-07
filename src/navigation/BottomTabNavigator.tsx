@@ -10,10 +10,13 @@ import GreyPREAIcon from 'src/assets/images/prea-grey.svg';
 import OrangePREAIcon from 'src/assets/images/prea-orange.svg';
 import HomeScreen from 'src/screens/Home/';
 import { colors } from 'src/styles/colors';
+import Logo from 'src/assets/images/logo.svg';
 import HealingResourcesNavigator from './stacks/HealingResourcesNavigator';
 import LegalRightsNavigator from './stacks/LegalRightsNavigator';
 import SeekHelpNavigator from './stacks/SeekHelpNavigator';
 import { BottomTabParams } from './types';
+import {View} from 'react-native';
+
 
 const initialRouteName = 'Healing';
 
@@ -26,23 +29,43 @@ export default function NavigationBar() {
       screenOptions={{
         tabBarActiveTintColor: colors.orange,
         tabBarInactiveTintColor: colors.grey,
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: "#F7F9FC",
+        },
+        headerTitleAlign: 'left', 
+        headerTitleStyle: {
+          fontSize: 20,
+          
+          fontWeight: 'bold',
+          color: colors.orange,
+          marginLeft: '2%', 
+        },
+        headerRight: () => (
+          <View style={{ paddingRight:  '2%'}}>
+          <Logo/>
+          </View>
+        ),
+        
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          headerTitle: '',
           tabBarIcon: ({ focused }) =>
             focused ? <OrangeHomeIcon /> : <GreyHomeIcon />,
         }}
+        
       />
       <Tab.Screen
         name="Healing"
         component={HealingResourcesNavigator}
+        
         options={{
-          tabBarLabel: 'Healing Resources',
+          headerTitle: 'Healing Resources',
+          
           tabBarIcon: ({ focused }) =>
             focused ? (
               <OrangeHealingResourcesIcon />
@@ -55,6 +78,7 @@ export default function NavigationBar() {
         name="Legal"
         component={LegalRightsNavigator}
         options={{
+          headerTitle: 'Legal Rights',
           tabBarLabel: 'Legal Rights',
           tabBarIcon: ({ focused }) =>
             focused ? <OrangePREAIcon /> : <GreyPREAIcon />,

@@ -8,7 +8,11 @@ const SeekHelpStack = createNativeStackNavigator<SeekHelpStackParams>();
 export default function SeekHelpNavigator() {
   return (
     <SeekHelpStack.Navigator>
-      <SeekHelpStack.Screen name="SeekHelp" component={SeekHelp} />
+      <SeekHelpStack.Screen 
+      name="SeekHelp" 
+      component={SeekHelp} 
+      
+      />
     </SeekHelpStack.Navigator>
   );
 }

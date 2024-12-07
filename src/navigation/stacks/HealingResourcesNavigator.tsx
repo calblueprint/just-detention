@@ -13,14 +13,17 @@ export default function HealingResourcesNavigator() {
       <HealingStack.Screen
         name="HealingResources"
         component={HealingResources}
+        
       />
       <HealingStack.Screen
         name="HealingCatalogue"
         component={HealingCatalogue}
+        
       />
       <HealingStack.Screen
         name="HopeForHealingGuide"
         component={HopeHealingGuide}
+        
       />
     </HealingStack.Navigator>
   );
