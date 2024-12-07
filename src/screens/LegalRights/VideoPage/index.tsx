@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
+import { useFocusEffect } from '@react-navigation/native';
 import leftArrow from '@/assets/images/left-arrow.png';
 import rightArrow from '@/assets/images/right-arrow.png';
 import { LegalScreenProps } from '@/navigation/types';
@@ -65,11 +66,32 @@ export default function VideoPage({
     } catch {
       setTitle('Title');
     }
-  }, [index]); // run useEffect every time value of index changes
+  }, [index]);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     if (playerRef.current) {
+  //       playerRef.current.play();
+  //     }
+
+  //     return () => {
+  //       if (playerRef.current) {
+  //         playerRef.current.pause?.(); // Safe check for pause
+  //       }
+  //     };
+  //   }, []),
+  // );
 
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.captionButtons]} onPress={prevPage}>
+      <Pressable
+        style={
+          index != 0
+            ? [styles.captionButtons]
+            : [styles.captionButtons, styles.noButton]
+        }
+        onPress={prevPage}
+      >
         <Image style={[styles.arrows]} source={leftArrow} />
         <Text style={styles.buttonText}>Back</Text>
       </Pressable>
@@ -87,7 +109,14 @@ export default function VideoPage({
         />
       </View>
 
-      <Pressable style={[styles.captionButtons]} onPress={nextPage}>
+      <Pressable
+        style={
+          index != preaData.length - 1
+            ? [styles.captionButtons]
+            : [styles.captionButtons, styles.noButton]
+        }
+        onPress={nextPage}
+      >
         <Text style={styles.buttonText}>Next</Text>
         <Image style={[styles.arrows]} source={rightArrow} />
       </Pressable>

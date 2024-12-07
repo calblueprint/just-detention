@@ -39,6 +39,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     boxShadow: '0px 2px 10px 1px rgba(0, 0, 0, 0.10)',
   },
+  noButton: {
+    opacity: 0,
+  },
   buttonText: {
     fontSize: 16,
     fontWeight: '500',
