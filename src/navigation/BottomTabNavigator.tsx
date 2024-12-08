@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GreyHealingResourcesIcon from 'src/assets/images/healing-resources-grey.svg';
 import OrangeHealingResourcesIcon from 'src/assets/images/healing-resources-orange.svg';
@@ -6,6 +7,7 @@ import GreyHelpResourcesIcon from 'src/assets/images/help-resources-grey.svg';
 import OrangeHelpResourcesIcon from 'src/assets/images/help-resources-orange.svg';
 import GreyHomeIcon from 'src/assets/images/home-grey.svg';
 import OrangeHomeIcon from 'src/assets/images/home-orange.svg';
+import Logo from 'src/assets/images/logo.svg';
 import GreyPREAIcon from 'src/assets/images/prea-grey.svg';
 import OrangePREAIcon from 'src/assets/images/prea-orange.svg';
 import HomeScreen from 'src/screens/Home/';
@@ -25,7 +27,6 @@ export default function NavigationBar() {
       initialRouteName={initialRouteName}
       screenOptions={{
         tabBarActiveTintColor: colors.orange,
-        tabBarInactiveTintColor: colors.grey,
         headerShown: false,
       }}
     >
@@ -33,16 +34,31 @@ export default function NavigationBar() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          headerTitle: '',
           tabBarIcon: ({ focused }) =>
             focused ? <OrangeHomeIcon /> : <GreyHomeIcon />,
+          headerStyle: {
+            backgroundColor: '#F7F9FC',
+          },
+          headerShown: true,
+          headerTitleAlign: 'left',
+          headerTitleStyle: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: colors.orange,
+            marginLeft: '2%',
+          },
+          headerRight: () => (
+            <View style={{ paddingRight: '2%' }}>
+              <Logo />
+            </View>
+          ),
         }}
       />
       <Tab.Screen
         name="Healing"
         component={HealingResourcesNavigator}
         options={{
-          tabBarLabel: 'Healing Resources',
           tabBarIcon: ({ focused }) =>
             focused ? (
               <OrangeHealingResourcesIcon />
