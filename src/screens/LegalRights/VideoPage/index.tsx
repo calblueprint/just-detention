@@ -86,7 +86,7 @@ export default function VideoPage({
     <View style={styles.container}>
       <Pressable
         style={
-          index != 0
+          index !== 0
             ? [styles.captionButtons]
             : [styles.captionButtons, styles.noButton]
         }
@@ -111,7 +111,7 @@ export default function VideoPage({
 
       <Pressable
         style={
-          index != preaData.length - 1
+          index !== preaData.length - 1
             ? [styles.captionButtons]
             : [styles.captionButtons, styles.noButton]
         }
