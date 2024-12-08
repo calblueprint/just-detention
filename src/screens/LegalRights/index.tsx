@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
-import placeholderPoster from '@/assets/images/placeholder.png';
+import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
+import LegalRightsItem from '@/components/LegalRightsItem';
 import { LegalScreenProps } from '@/navigation/types';
 import { getPreaByLanguage } from '@/supabase/queries/generalQueries';
-import { getPosterLink } from '@/supabase/queries/storageQueries';
 import { VideoResource } from '@/types/types';
 import { styles } from './styles';
 
@@ -15,6 +14,7 @@ export default function LegalRights({
   // english pages var mhm
   const [englishModules, setEnglishModules] = useState<VideoResource[]>([
     {
+      title: 'string',
       id: 'string',
       is_short_answer: true,
       page_number: 0,
@@ -29,6 +29,7 @@ export default function LegalRights({
   // spanish pages var mhm
   const [spanishModules, setSpanishModules] = useState<VideoResource[]>([
     {
+      title: 'string',
       id: 'string',
       is_short_answer: true,
       page_number: 0,
@@ -92,38 +93,21 @@ export default function LegalRights({
           <Text style={styles.buttonText}>Español CC</Text>
         </Pressable>
       </View>
+
       <ScrollView>
-        <View style={styles.preaModulesView}>
-          {currentModules.map((section, index) => (
-            <Pressable
-              style={styles.preaModule}
-              onPress={() =>
-                goToVideo(
-                  section['page_number'],
-                  section['spanish'] ? 'spanish' : 'english',
-                )
-              }
-            >
-              <Image
-                style={styles.modulePoster}
-                source={
-                  getPosterLink(
-                    section['spanish'] ? 'spanish' : 'english',
-                    section['video_id'],
-                  )
-                    ? {
-                        uri: getPosterLink(
-                          section['spanish'] ? 'spanish' : 'english',
-                          section['video_id'],
-                        )!,
-                      }
-                    : placeholderPoster
-                }
-              />
-              <Text style={styles.moduleTitle}>{section['video_id']}</Text>
-            </Pressable>
-          ))}
-        </View>
+        <FlatList
+          style={styles.preaGrid}
+          data={currentModules}
+          renderItem={({ item }) => (
+            <LegalRightsItem key={item.id} section={item} onPress={goToVideo} />
+          )}
+          numColumns={3}
+          columnWrapperStyle={{
+            justifyContent: 'space-between',
+            gap: 40,
+            marginBottom: 10,
+          }}
+        />
       </ScrollView>
     </>
   );

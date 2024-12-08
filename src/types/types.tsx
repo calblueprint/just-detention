@@ -21,6 +21,7 @@ export interface SeekHelpProps {
   tags: string;
 }
 export type VideoResource = {
+  title: string;
   id: string;
   is_short_answer: boolean;
   page_number: number;
@@ -30,3 +31,8 @@ export type VideoResource = {
   survey: string;
   video_id: string;
 };
+
+export interface VideoSectionItemProps {
+  section: VideoResource;
+  onPress: (pageNumber: number, language: string) => void;
+}

@@ -29,25 +29,8 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontWeight: 'bold',
   },
-  preaModulesView: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 20,
-  },
-  preaModule: {
-    paddingTop: 15,
-  },
-  moduleTitle: {
-    paddingTop: 10,
-    fontSize: 20,
-    fontWeight: 'semibold',
-  },
-  modulePoster: {
-    width: 300,
-    height: 200,
-    borderRadius: 10,
+  preaGrid: {
+    paddingHorizontal: 60,
   },
   tinyLogo: {
     width: 20,

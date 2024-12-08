@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
-import { Video } from 'expo-av';
+import React, { useEffect, useRef, useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useFocusEffect } from '@react-navigation/native';
 import leftArrow from '@/assets/images/left-arrow.png';
 import rightArrow from '@/assets/images/right-arrow.png';
 import { LegalScreenProps } from '@/navigation/types';
@@ -16,6 +17,7 @@ export default function VideoPage({
   // var for array of all the pages for the current language
   const [preaData, setPreaData] = useState([
     {
+      title: 'string',
       id: 'string',
       is_short_answer: true,
       page_number: 0,
@@ -26,15 +28,16 @@ export default function VideoPage({
       video_id: 'Section Title 1',
     },
   ]);
-  const [index, setIndex] = useState(10); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
-  // const [language, setLanguage] = useState('english'); // which language associated to array of pages
+  const [index, setIndex] = useState(Infinity); // index of current page in full array of pages; have to set to infinite or else if the first page (actually index 0) is pressed, the videopage wont update
+  const [title, setTitle] = useState('Title');
 
   const videoLinkRef = useRef(
     'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
   );
 
-  //
-  const [renderTrigger, setRenderTrigger] = useState(0);
+  const player = useVideoPlayer(videoLinkRef.current, thisPlayer => {
+    thisPlayer.play();
+  });
 
   const nextPage = () => {
     setIndex(prevIndex => Math.min(prevIndex + 1, preaData.length - 1)); // next index in array of pages
@@ -53,35 +56,70 @@ export default function VideoPage({
   useEffect(() => {
     const fetchVideoLink = async () => {
       videoLinkRef.current = getVideoLink(language, preaData[index].video_id); // Update the ref with the new video link
-      setRenderTrigger(prev => prev + 1); // Trigger a re-render to apply the new link
     };
 
     fetchVideoLink();
-  }, [index]); // run useEffect every time value of index changes
+    player.replace(videoLinkRef.current);
+
+    try {
+      setTitle(preaData[index].title);
+    } catch {
+      setTitle('Title');
+    }
+  }, [index]);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     if (playerRef.current) {
+  //       playerRef.current.play();
+  //     }
+
+  //     return () => {
+  //       if (playerRef.current) {
+  //         playerRef.current.pause?.(); // Safe check for pause
+  //       }
+  //     };
+  //   }, []),
+  // );
 
   return (
-    <ScrollView style={styles.container}>
-      <Video
-        key={renderTrigger} // changing the key forces re-mount and playback reset
-        source={{ uri: videoLinkRef.current }}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        shouldPlay
-        isLooping
-        style={styles.video}
-      />
+    <View style={styles.container}>
+      <Pressable
+        style={
+          index !== 0
+            ? [styles.captionButtons]
+            : [styles.captionButtons, styles.noButton]
+        }
+        onPress={prevPage}
+      >
+        <Image style={[styles.arrows]} source={leftArrow} />
+        <Text style={styles.buttonText}>Back</Text>
+      </Pressable>
 
-      <View style={styles.buttonContainer}>
-        <Pressable style={[styles.captionButtons]} onPress={prevPage}>
-          <Image style={[styles.arrows]} source={leftArrow} />
-          <Text style={styles.buttonText}>{'Previous Section'}</Text>
-        </Pressable>
-        <Pressable style={[styles.captionButtons]} onPress={nextPage}>
-          <Text style={styles.buttonText}>{'Next Section'}</Text>
-          <Image style={[styles.arrows]} source={rightArrow} />
-        </Pressable>
+      <View style={styles.videoAndTitle}>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+
+        <VideoView
+          style={styles.video}
+          player={player}
+          allowsFullscreen
+          allowsPictureInPicture
+        />
       </View>
-    </ScrollView>
+
+      <Pressable
+        style={
+          index !== preaData.length - 1
+            ? [styles.captionButtons]
+            : [styles.captionButtons, styles.noButton]
+        }
+        onPress={nextPage}
+      >
+        <Text style={styles.buttonText}>Next</Text>
+        <Image style={[styles.arrows]} source={rightArrow} />
+      </Pressable>
+    </View>
   );
 }
